@@ -1,6 +1,43 @@
-{% extends "base.html" %}
-{% load static %}
+{% extends "base.html" %} 
+{% load static %} 
+
+{% block page_header %}
+<div class="container header-container mt-5">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %}
 
 {% block content %}
-    <h1 class="display-4 text-success">It works!</h1>
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-10 col-md-9 text-center">
+      <h1 class="text-uppercase font-weight-bold mt-3">
+        Your tech adventure starts here
+      </h1>
+      <hr class="mb-3" />
+      <p class="mt-3 lead">
+        Welcome to Smart Tech, your ultimate destination for the latest and
+        coolest accessories, cutting-edge gadgets, and thrilling games!
+      </p>
+      <p class="mt-3 lead">
+        Wether you are looking to level up your smartphone with stylish cases
+        and innovative tech accessories, or dive into the world of gaming with
+        the hottest new releases and gear, we have got you covered. Explore our
+        handpicked collection designed to bring your tech experience to the next
+        level. Don't miss out on the must-have gadgets that everyone is talking
+        about - shop now and stay ahead of the curve!
+      </p>
+
+      <a
+        class="btn btn-lg w-50 btn-warning font-weight-bold text-uppercase mt-3 mb-3"
+        href=""
+      >
+        Shop Now
+      </a>
+    </div>
+  </div>
+</div>
+
 {% endblock %}
