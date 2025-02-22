@@ -1,3 +1,32 @@
+
+/*--------------------------------------------General*/
+html{
+    height: 100%;
+}
+
 body{
-    background-color: aquamarine;
+    margin-top: 100px;
+    background-color:#484848;
+    color: #fafafa;
+}
+
+hr {
+    border-top: 1px solid #d3d90c;
+}
+
+/*--------------------------------------------Navigation*/
+.nav-link {
+    color: #fafafa;
+}
+
+.nav-link:hover {
+    color: #d3d90c;
+}
+
+.nav-link:active {
+    color: #d3d90c;
+}
+
+.navbar{
+    background-color: #484848;
 }
