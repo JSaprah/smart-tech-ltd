@@ -1,0 +1,146 @@
+[
+  {
+    "pk": 1,
+    "model": "products.product",
+    "fields": {
+      "category": 1,
+      "image": "nintendo-switch.webp",
+      "sku": "751665",
+      "name": "Nintendo Switch – OLED Model",
+      "price": 279.99,
+      "description": "All your Nintendo friends are on the Switch. Fancy games with Mario and Luigi, Link and Zelda or Pikachu and the other Pokémon? You can find all of them and many more exclusively on Switch. And you can take them with you anywhere you go! Nintendo Switch is a hybrid console - you can either hook it to your TV, or go handheld and play on its 7” screen. That means you can game any way you like, whether it's a lazy afternoon with the family or a commute to school or work."
+    }
+  },
+  {
+    "pk": 2,
+    "model": "products.product",
+    "fields": {
+      "category": 1,
+      "image": "xbox.webp",
+      "sku": "399176",
+      "name": "Microsoft Xbox Series X - 1 TB",
+      "price": 534.00,
+      "description": "Experience a new generation of gaming with the Microsoft Xbox Series X. Featuring re-engineered hardware and software integration, Xbox Velocity Architecture delivers superior speed and performance like you've never seen before. Ready for 8K gaming with speeds up to 120 fps, you will experience lightning-fast gaming with incredible detail."
+    }
+  },
+  {
+    "pk": 3,
+    "model": "products.product",
+    "fields": {
+      "category": 1,
+      "image": "ps5.webp",
+      "sku": "403768",
+      "name": "Sony PlayStation 5 (Model Group - Slim)",
+      "price": 479.00,
+      "description": "The new PS5 is slimmed down, but it's still just as fast. It's 24% lighter and 30% smaller than the original – so now it actually might fit in that tight spot under the telly. And even though it's little, it still packs a punch. Jump in with shiny 4K Ultra HD graphics at up to 120 fps for silky-smooth life-like action. There's a chunkier 1 TB SSD too, which gives you loads of space for your favourite titles. An extra USB-C port lets you charge a couple of controllers at once, so you're ready for some couch co-op."
+    }
+  },
+  {
+    "pk": 4,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "type-c-adapter.webp",
+      "sku": "315611",
+      "name": "Type-C Power Adapter",
+      "price": 14.99,
+      "description": "With 20 W, this adapter can take care of your iPhone, iPad and other gadgets. You can plug in any USB Type-C cable to charge a wide variety of devices. Featuring foldable UK plug connectors, it's perfect for travel and easy to pack in your bag"
+    }
+  },
+  {
+    "pk": 5,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "usb-adapter.webp",
+      "sku": "315622",
+      "name": "USB Power Adapter",
+      "price": 14.99,
+      "description": "With 20 W, this adapter can take care of your iPhone, iPad and other gadgets. You can plug in any USB Type-C cable to charge a wide variety of devices. Featuring foldable UK plug connectors, it's perfect for travel and easy to pack in your bag"
+    }
+  },
+  {
+    "pk": 6,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "wire-type-c-to-lightning.webp",
+      "sku": "388799",
+      "name": "Power Cable Type-C to Lightning",
+      "price": 9.99,
+      "description": "20W fast charging 1 meter power cable"
+    }
+  },
+  {
+    "pk": 7,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "wire-type-c-to-type-c.webp",
+      "sku": "388800",
+      "name": "Power Cable Type-C to Type C",
+      "price": 9.99,
+      "description": "20W fast charging 1 meter power cable"
+    }
+  },
+  {
+    "pk": 8,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "wire-type-c-to-usb.webp",
+      "sku": "388801",
+      "name": "Power Cable Type-C to USB",
+      "price": 9.99,
+      "description": "20W fast charging 1 meter power cable"
+    }
+  },
+  {
+    "pk": 9,
+    "model": "products.product",
+    "fields": {
+      "category": 2,
+      "image": "wire-usb-to-lightning.webp",
+      "sku": "388802",
+      "name": "Power Cable USB to lightning",
+      "price": 9.99,
+      "description": "20W fast charging 1 meter power cable"
+    }
+  },
+  {
+    "pk": 10,
+    "model": "products.product",
+    "fields": {
+      "category": 3,
+      "image": "airpods.webp",
+      "sku": "397503",
+      "name": "Apple AirPods 4 with Active Noise Cancellation",
+      "price": 179.99,
+      "description": "The Apple AirPods 4 with Active Noise Cancellation bring you a totally transformed audio experience. Adaptive Audio tweaks the noise control to your changing environment as you go about your day. Transparency mode is ideal when you're out on a run – you can stay connected to your surroundings while you listen. And an updated fit means they're comfy from AM to PM."
+    }
+  },
+  {
+    "pk": 11,
+    "model": "products.product",
+    "fields": {
+      "category": 3,
+      "image": "samsung-earbuds.webp",
+      "sku": "727978",
+      "name": "Samsung Galaxy Buds3 Pro Wireless Bluetooth Noise-Cancelling",
+      "price": 219.00,
+      "description": "Give your music the attention it deserves with these Samsung Galaxy Buds3 Pro. Their AI-powered Active Noise Cancelling blocks out background noise that can become distracting. It can even recognise the difference between general racket and an emergency siren, so you can still be aware of what's going on around you. Travelling overseas? The Real Time Interpreter instantly translates in your ears, so you won't miss out on any interesting local knowledge. And the in-ear tips have been designed to fit snugly so you can wear them all day in complete comfort. Perfect for long haul flights or when you need a little extra motivation at work."
+    }
+  },
+  {
+    "pk": 12,
+    "model": "products.product",
+    "fields": {
+      "category": 3,
+      "image": "jbl-headset.webp",
+      "sku": "615264",
+      "name": "JBL Tune 720BT Wireless Bluetooth Headphones",
+      "price": 39.99,
+      "description": "Feel every bone-rattling bass line with these JBL headphones. With JBL Pure Bass Sound, you can enjoy your favourite tunes with heaps of low-end thump, just like at a concert. Prefer less bass and more mids? Download the JBL Headphone app and fine-tune your EQ settings so it sounds just the way you like it. And with up to 76 hours of battery life, you can listen to your perfectly curated playlists all day without stopping to grab the charger."
+    }
+  }
+]

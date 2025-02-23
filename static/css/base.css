@@ -30,3 +30,8 @@ hr {
 .navbar{
     background-color: #484848;
 }
+
+.dropdown-item:hover{
+    background-color: #ffc107;
+    color: #000000;
+}
