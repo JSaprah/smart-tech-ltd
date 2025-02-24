@@ -4,7 +4,7 @@ from .models import Product
 # Create your views here.
 
 
-def products(request):
+def all_products(request):
     """ Returns all products """
 
     products = Product.objects.all()
