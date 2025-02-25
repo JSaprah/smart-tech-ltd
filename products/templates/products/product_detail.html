@@ -1,20 +1,41 @@
-{% extends "base.html" %}
-{% load static %}
-
-{% block page_header %}
+{% extends "base.html" %} {% load static %} {% block page_header %}
 <div class="container header-container mt-5">
   <div class="row">
     <div class="col"></div>
   </div>
 </div>
-{% endblock %}
-
+{% endblock %} 
 {% block content %}
-<div class="container mt-4">
-  <div class="row">
-    <div class="col">
-        
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="image-container my-5">
+                    {% if product.image %}
+                        <a href="{{ product.image.url }}" target="_blank">
+                            <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}">
+                        </a>
+                        {% else %}
+                        <a href="">
+                            <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ product.name }}">
+                        </a>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-12 col-md-6 col-lg-4 ml-4 text-center text-md-left">
+                <div class="product-details-container">
+                    <p class="text-uppercase">{{ product.name }}</p>
+                    <p class="font-weight-bold">£{{ product.price }}</p>
+                    <p>{{ product.description }}</p>
+                    <a
+                    class="btn btn-lg btn-warning font-weight-bold text-uppercase w-100 mt-3 mb-3"
+                    href=""
+                  ><i class="fa-solid fa-bag-shopping fa-lg mr-2"></i>
+                    Add to bag
+                  </a>
+                </div>
+            </div>
+        </div>
     </div>
-
 </div>
+    
 {% endblock %}
