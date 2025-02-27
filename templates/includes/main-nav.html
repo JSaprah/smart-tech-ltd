@@ -7,7 +7,7 @@
       </li>
 
       <li class="nav-item">
-          <a class="font-weight-bold nav-link text-light mr-5" href="#" id="gaming-link">
+          <a class="font-weight-bold nav-link text-light mr-5" href="{% url 'products' %}?category=games" id="gaming-link">
               Gaming
           </a>
       </li>
@@ -17,12 +17,12 @@
               Accessoiries
           </a>
           <div class="dropdown-menu border-0" aria-labelledby="accessoiries-link">
-              <a href="" class="dropdown-item">Charging</a>
-              <a href="" class="dropdown-item">Headsets</a>
+              <a href="{% url 'products' %}?category=charging" class="dropdown-item">Charging</a>
+              <a href="{% url 'products' %}?category=headsets" class="dropdown-item">Headsets</a>
           </div>
       </li>
       <li class="nav-item">
-        <a class="font-weight-bold nav-link text-danger mr-5" href="#" id="special-offers-link">
+        <a class="font-weight-bold nav-link text-danger mr-5" href="{% url 'products' %}?category=special-offers" id="special-offers-link">
             Special Offers
         </a>
     </li>
