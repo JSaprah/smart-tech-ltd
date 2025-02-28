@@ -30,6 +30,16 @@
         </form>
       </div>
     </li>
+
+    <!--Wishlist-->
+    <li class="list-inline-item">
+      <a class="nav-link text-black d-block d-lg-none" href="">
+        <div class="text-center">
+          <div><i class="fas fa-heart"></i></div>
+        </div>
+      </a>
+    </li>
+    
     <!-- My Account -->
     <li class="list-inline-item dropdown">
       <a class="text-black nav-link d-block d-lg-none" href="#" id="user-options" data-toggle="dropdown"
@@ -38,7 +48,7 @@
           <div><i class="fas fa-user"></i></div>
         </div>
       </a>
-      <div class="dropdown-menu font-weight-bold border-0" aria-labelledby="user-options">
+      <div class="dropdown-menu bg-light font-weight-bold border-0" aria-labelledby="user-options">
         {% if request.user.is_authenticated %}
           {% if request.user.is_superuser %}
             <a href="#" class="dropdown-item font-weight-bold">Product Management</a>
@@ -54,7 +64,7 @@
     <!-- Shopping Bag -->
     <li class="list-inline-item">
       <a class="{% if grand_total %}text-primary font-weight-bold{% else %}text-black{% endif %} nav-link d-block d-lg-none"
-        href="#">
+        href="{% url 'view_bag' %}">
         <div class="text-center">
           <div><i class="fas fa-shopping-bag"></i></div>
         </div>
