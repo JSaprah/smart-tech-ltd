@@ -6,7 +6,7 @@
 
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta charset="utf-8">
+        <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% endblock %}
 
@@ -34,8 +34,8 @@
     <title>Smart Tech {% block extra_title %}{% endblock %}</title>
   </head>
   <body>
-    <header class="container-fluid">
-        <div class="row">
+    <header class="container-fluid header">
+        <div class="row d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h1 class="logo-font text-warning my-0 text-uppercase"><strong>Smart Tech</strong></h1>
@@ -110,7 +110,6 @@
                 {% include 'includes/main-nav.html' %}
             </nav>
         </div>
-
         
     </header>
 
@@ -122,6 +121,7 @@
     {% endblock %}
 
     {% block content %}
+    <div class="content-container"></div>
     {% endblock %}
 
     {% block postloadjs %}

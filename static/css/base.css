@@ -9,9 +9,17 @@ body{
     color: #fafafa;
 }
 
+.header{
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background-color:#484848;
+}
+
 hr {
     border-top: 1px solid #d3d90c;
 }
+
 
 /*--------------------------------------------Navigation*/
 .nav-link {
@@ -33,4 +41,13 @@ hr {
 .dropdown-item:hover{
     background-color: #ffc107;
     color: #000000;
+}
+
+.dropdown-menu{
+    background-color: #484848;
+}
+
+.product-card:hover{
+    background-color: #f3f3d2;
+
 }

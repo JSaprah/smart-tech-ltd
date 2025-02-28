@@ -1,16 +1,28 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
-<div class="container header-container mt-5">
+<div class="container header-container">
   <div class="row">
     <div class="col"></div>
   </div>
 </div>
-{% endblock %} {% block content %}
+{% endblock %} 
+
+{% block content %}
+
+<div class="container-fluid">
+  <div class="row">
+      <div class="col text-center mt-4">
+          <h5 class="fw-bold text-uppercase">Products</h5>
+          <hr class="w-50 mb-4">
+      </div>
+  </div>
+
+
 <div class="container mt-4">
   <div class="row">
     {% for product in products %}
     <div class="col-md-6 col-lg-4 bg-dark p-3 mb-3">
-      <a href="{% url 'product_detail' product.id %}">
-      <div class="card d-flex flex-column h-100 bg-light mb-3">
+      <a href="{% url 'product_detail' product.id %}" class="text-decoration-none">
+      <div class="card d-flex flex-column h-100 mb-3 product-card">
         <div class="row g-0">
           <div class="col-6 d-flex justify-content-center align-items-center">
 
