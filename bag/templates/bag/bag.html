@@ -17,16 +17,17 @@
     </div>
 
 
-{% if bag_items %}
+{% if bag_products %}
   <div class="container h-100">
     <div class="row d-flex justify-content-center my-4 text-dark">
       <!--Shopping bag title-->
       <div class="col-md-8">
         <div class="card mb-4">
           <div class="card-header py-3">
-            <h5 class="mb-0">Cart - 2 items</h5>
-            <p>{{ bag_products }}</p>
+            <h5 class="mb-0"> Products in shopping bag: {{ product_count }}</h5>
           </div>
+
+          {% for product in bag_products %}
           <div class="card-body">
             <!-- Product -->
             <div class="row">
@@ -37,7 +38,7 @@
                   data-mdb-ripple-color="light"
                 >
                   <img
-                    src="{{ product.image }}"
+                    src="{{ product.product.image.url }}"
                     class="w-100"
                     alt="{{ product.name }}"
                   />
@@ -52,8 +53,8 @@
 
               <!-- Product details -->
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
-                <p><strong>{{ product.name }}</strong></p>
-                <p>Description: {{ product.description }}</p>
+                <p><strong>{{ product.product.name }}</strong></p>
+                <p>{{ product.product.description }}</p>
                 <button
                   type="button"
                   data-mdb-button-init
@@ -88,15 +89,8 @@
                     <i class="fas fa-minus"></i>
                   </button>
 
-                  <div data-mdb-input-init class="form-outline">
-                    <input
-                      id="form1"
-                      min="0"
-                      name="quantity"
-                      value="1"
-                      type="number"
-                      class="form-control"
-                    />
+                  <div data-mdb-input-init class="px-3">
+                    {{ product.quantity }}
                   </div>
 
                   <button
@@ -111,11 +105,13 @@
 
                 <!-- Price -->
                 <p class="text-start text-md-center">
-                  <strong>£ {{ product.price }}</strong>
+                  <strong>£ {{ product.product.price }}</strong>
                 </p>
               </div>
             </div>
           </div>
+          {% endfor %}
+
         </div>
         <div class="card mb-4">
           <div class="card-body">
@@ -145,13 +141,13 @@
                 class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
               >
                 Products
-                <span>£ {{ product.price }}</span>
+                <span>£ {{ total }}</span>
               </li>
               <li
                 class="list-group-item d-flex justify-content-between align-items-center px-0"
               >
                 Shipping
-                <span>Free</span>
+                <span>{{ delivery }}</span>
               </li>
               <li
                 class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
@@ -163,7 +159,7 @@
                     <p class="mb-0">(including VAT)</p>
                   </strong>
                 </div>
-                <span><strong>£ ..</strong></span>
+                <span><strong>£ {{ grand_total }}</strong></span>
               </li>
             </ul>
 
