@@ -1,0 +1,56 @@
+<script type="text/javascript">
+  $(document).ready(function () {
+    const $quantityInput = $(".quantity-input");
+    const $substractionButton = $(".substraction");
+    const $addButton = $(".addition");
+
+    //Function to check the status of the buttons
+    function checkButtons() {
+      let currentInput = parseInt($quantityInput.val());
+
+      if (currentResult <= 1) {
+        $substractionButton.prop("disabled", false);
+      } else {
+        $substractionButton.prop("disabled", true);
+      }
+
+      if (currentResult >= 99) {
+        $substractionButton.prop("disabled", true);
+      } else {
+        $substractionButton.prop("disabled", false);
+      }
+    }
+
+    //Substraction button click
+    $substractionButton.click(function (e) {
+      e.preventDefault();
+      let currentInput = parseInt($quantityInput.val());
+      currentInput = parseInt(currentInput);
+      let newInput = currentInput - 1;
+
+      if (newInput < 1) {
+        newInput = 1;
+      }
+
+      $quantityInput.val(newInput);
+      checkButtons();
+    });
+
+    //Addition button click
+    $addButton.click(function (e) {
+      e.preventDefault();
+      let currentInput = parseInt($quantityInput.val());
+      currentInput = parseInt(currentInput);
+      let newInput = currentInput + 1;
+
+      if (newInput > 99) {
+        newInput = 99;
+      }
+
+      $quantityInput.val(newInput);
+      checkButtons();
+    });
+
+    checkButtons();
+  });
+</script>

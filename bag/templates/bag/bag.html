@@ -1,30 +1,28 @@
 {% extends "base.html" %} {% load static %} {% block page_header %}
 <div class="container header-container">
-    <div class="row">
-      <div class="col"></div>
-    </div>
+  <div class="row">
+    <div class="col"></div>
   </div>
+</div>
 {% endblock %} {% block content %}
 
-
 <div class="container-fluid">
-    <!--Title-->
-    <div class="row">
-      <div class="col text-center mt-4">
-        <h5 class="fw-bold text-uppercase">Shopping Bag</h5>
-        <hr class="w-50 mb-4" />
-      </div>
+  <!--Title-->
+  <div class="row">
+    <div class="col text-center mt-4">
+      <h5 class="fw-bold text-uppercase">Shopping Bag</h5>
+      <hr class="w-50 mb-4" />
     </div>
+  </div>
 
-
-{% if bag_products %}
+  {% if bag_products %}
   <div class="container h-100">
     <div class="row d-flex justify-content-center my-4 text-dark">
       <!--Shopping bag title-->
       <div class="col-md-8">
         <div class="card mb-4">
           <div class="card-header py-3">
-            <h5 class="mb-0"> Products in shopping bag: {{ product_count }}</h5>
+            <h5 class="mb-0">Products in shopping bag: {{ product_count }}</h5>
           </div>
 
           {% for product in bag_products %}
@@ -86,32 +84,50 @@
                     class="btn btn-warning px-3 me-2"
                     onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
                   >
-                    <i class="fas fa-minus"></i>
+                    <span class="icon">
+                      <i class="fas fa-minus"></i>
+                    </span>
                   </button>
 
                   <div data-mdb-input-init class="px-3">
-                    {{ product.quantity }}
+                    <input
+                      id="form1"
+                      min="0"
+                      name="quantity"
+                      value="{{ product.quantity }}"
+                      type="number"
+                      class="form-control"
+                      max="99"
+                    />
                   </div>
 
                   <button
                     data-mdb-button-init
                     data-mdb-ripple-init
-                    class="btn btn-warning px-3 ms-2"
+                    class="btn btn-warning px-3 me-2"
                     onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
                   >
-                    <i class="fas fa-plus"></i>
+                    <span class="icon">
+                      <i class="fas fa-plus"></i>
+                    </span>
                   </button>
                 </div>
 
+                <!-- Quantity -->
+
                 <!-- Price -->
                 <p class="text-start text-md-center">
-                  <strong>£ {{ product.product.price }}</strong>
+                  <strong> price: £ {{ product.product.price }}</strong>
                 </p>
+
+                <p class="text-start text-md-center">
+                    <strong> subtotal: £ {{ product.product.price }}</strong>
+                  </p>
               </div>
             </div>
           </div>
-          {% endfor %}
 
+          {% endfor %}
         </div>
         <div class="card mb-4">
           <div class="card-body">
@@ -163,14 +179,22 @@
               </li>
             </ul>
 
-            <button
-              type="button"
-              data-mdb-button-init
-              data-mdb-ripple-init
-              class="btn btn-success btn-lg btn-block"
+            <a
+              href="{% url 'products' %}"
+              class="btn btn-warning rounded-0 btn-lg btn-block"
             >
-              Go to checkout
-            </button>
+              <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+              </span>
+              <span class="text-uppercase">Keep Shopping</span>
+            </a>
+
+            <a href="" class="btn btn-dark rounded-0 btn-lg btn-block">
+              <span class="icon">
+                <i class="fas fa-lock"></i>
+              </span>
+              <span class="text-uppercase">Secure Checkout</span>
+            </a>
           </div>
         </div>
       </div>
@@ -184,18 +208,18 @@
     <div class="row">
       <div class="col text-center mt-4">
         <p class="mb-5 text-uppercase">Your bag is empty..</p>
-        <a href="{% url 'products' %}" class="btn rounded-0 btn-lg text-warning mb-4">
-            <span class="icon">
-                <i class="fas fa-chevron-left"></i>
-              </span>
-              <span class="text-uppercase">Keep Shopping</span>
-            </a>
-        
+        <a
+          href="{% url 'products' %}"
+          class="btn rounded-0 btn-lg text-warning mb-4"
+        >
+          <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+          </span>
+          <span class="text-uppercase">Keep Shopping</span>
+        </a>
+      </div>
     </div>
 
+    {% endif %} {% endblock %}
+  </div>
 </div>
-
-{% endif %}
-  
-{% endblock %}
-
