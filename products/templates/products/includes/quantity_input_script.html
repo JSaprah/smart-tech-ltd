@@ -4,22 +4,26 @@
     const $substractionButton = $(".substraction");
     const $addButton = $(".addition");
 
-    //Function to check the status of the buttons
-    function checkButtons() {
-      let currentInput = parseInt($quantityInput.val());
-
-      if (currentResult <= 1) {
-        $substractionButton.prop("disabled", false);
-      } else {
-        $substractionButton.prop("disabled", true);
-      }
-
-      if (currentResult >= 99) {
-        $substractionButton.prop("disabled", true);
-      } else {
-        $substractionButton.prop("disabled", false);
-      }
+    // Disable buttons if below to 2 or above 98
+    function handleEnableDisable(itemId) {
+      var currentValue = parseInt($(`#id_quantity_${itemId}`).val());
+      var minusDisabled = currentValue < 2;
+      var plusDisabled = currentValue > 98;
+      $(`#substraction_${itemId}`).prop("disabled", minusDisabled);
+      $(`#addition_${itemId}`).prop("disabled", plusDisabled);
     }
+
+    // Ensure proper enabling/disabling of all inputs on page load
+    for (var i = 0; i < $quantityInput.length; i++) {
+      var itemId = $($quantityInput[i]).data("item_id");
+      handleEnableDisable(itemId);
+    }
+
+    // Check enable/disable every time the input is changed
+    $quantityInput.change(function () {
+      var itemId = $(this).data("item_id");
+      handleEnableDisable(itemId);
+    });
 
     //Substraction button click
     $substractionButton.click(function (e) {
@@ -33,7 +37,9 @@
       }
 
       $quantityInput.val(newInput);
-      checkButtons();
+
+      var itemId = $(this).data("item_id");
+      handleEnableDisable(itemId);
     });
 
     //Addition button click
@@ -48,9 +54,9 @@
       }
 
       $quantityInput.val(newInput);
-      checkButtons();
+      var itemId = $(this).data("item_id");
+      handleEnableDisable(itemId);
     });
 
-    checkButtons();
   });
 </script>

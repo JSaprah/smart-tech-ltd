@@ -53,68 +53,50 @@
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                 <p><strong>{{ product.product.name }}</strong></p>
                 <p>{{ product.product.description }}</p>
-                <button
-                  type="button"
-                  data-mdb-button-init
-                  data-mdb-ripple-init
-                  class="btn btn-primary btn-sm me-1 mb-2"
-                  data-mdb-tooltip-init
-                  title="Remove item"
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
-                <button
-                  type="button"
-                  data-mdb-button-init
-                  data-mdb-ripple-init
-                  class="btn btn-danger btn-sm mb-2"
-                  data-mdb-tooltip-init
-                  title="Move to the wish list"
-                >
-                  <i class="fas fa-heart"></i>
-                </button>
+
               </div>
 
               <!-- Quantity -->
-              <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+              <form class="form update-form" method="POST" action="">
+                {% csrf_token %}
+
+              <div class="col justify-content-center">
                 <div class="d-flex mb-4" style="max-width: 300px">
-                  <button
-                    data-mdb-button-init
-                    data-mdb-ripple-init
-                    class="btn btn-warning px-3 me-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
-                  >
-                    <span class="icon">
-                      <i class="fas fa-minus"></i>
-                    </span>
-                  </button>
-
-                  <div data-mdb-input-init class="px-3">
-                    <input
-                      id="form1"
-                      min="0"
-                      name="quantity"
-                      value="{{ product.quantity }}"
-                      type="number"
-                      class="form-control"
-                      max="99"
-                    />
-                  </div>
-
-                  <button
-                    data-mdb-button-init
-                    data-mdb-ripple-init
-                    class="btn btn-warning px-3 me-2"
-                    onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
-                  >
-                    <span class="icon">
-                      <i class="fas fa-plus"></i>
-                    </span>
-                  </button>
+                    
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <button class="substraction btn btn-warning px-3 me-2"
+                                data-item_id="{{ product.id }}" id="substraction_{{ product.id }}">
+                                <span class="icon">
+                                    <i class="fas fa-minus"></i>
+                                </span>
+                            </button>
+                        </div>
+                        <input class="form-control quantity-input" type="number" name="quantity" value="{{ product.quantity }}"
+                            min="1" max="99" data-item_id="{{ product.id }}" id="id_quantity_{{ product.id }}">
+                        <div class="input-group-append">
+    
+                            <button class="addition btn btn-warning px-3 me-2"
+                                data-item_id="{{ product.id }}" id="addition_{{ product.id }}">
+                                <span class="icon">
+                                    <i class="fas fa-plus"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
+                </form>
                 <!-- Quantity -->
 
+                <!--Update and remove button-->
+                <button type="button" class="update-link btn btn-success btn-sm me-1 mb-2">
+                <i class="fa-solid fa-bookmark"></i>
+              </button>
+              <button type="remove-product button" class="btn btn-danger btn-sm mb-2" id="remove_{{ product.product_id }}">
+                <i class="fa-solid fa-trash"></i>
+              </button>
+              
                 <!-- Price -->
                 <p class="text-start text-md-center">
                   <strong> price: £ {{ product.product.price }}</strong>
@@ -223,3 +205,29 @@
     {% endif %} {% endblock %}
   </div>
 </div>
+
+{% block postloadjs %}
+{{ block.super }}
+{% include 'products\includes\quantity_input_script.html' %}
+{% endblock %}
+
+
+<script type="text/javascript">
+    
+    // Update quantity on click
+    $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+
+    // Remove item and reload on click
+    $('.remove-product').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var productId = $(this).attr('id').split('remove_')[1];
+        var url = `/bag/remove/${productId}`;
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
