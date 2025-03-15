@@ -1,4 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.contrib import messages
+from products.models import Product
 
 # Create your views here.
 
@@ -24,3 +26,22 @@ def add_product_to_bag(request, product_id):
     request.session['bag'] = bag
 
     return redirect(redirect_url)
+
+
+def update_bag(request, product_id):
+    """ A view to update the bag """
+
+    item = get_object_or_404(Product, pk=product_id)
+
+    quantity = int(request.POST.get('quantity'))
+    bag = request.session.get('bag', {})
+
+    if quantity > 0:
+        bag[product_id] = quantity
+        messages.success(request, f'Updated {item.name}')
+    else:
+        bag.pop(product_id)
+        messages.success(request, f'Removed {item.name} from your bag')
+
+    request.session['bag'] = bag
+    return redirect(reverse('view_bag'))
