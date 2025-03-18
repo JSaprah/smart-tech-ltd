@@ -24,27 +24,180 @@
 
                     {% csrf_token %}
                     <fieldset class="rounded px-3 mb-5">
-                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
-                        {{ form.first_name | as_crispy_field }}
+                        <legend class="fieldset-label small text-black px-2 w-auto text-dark">Details</legend>
+                        {{ order_form.first_name | as_crispy_field }}
+                        {{ order_form.last_name | as_crispy_field }}
+                        {{ order_form.email | as_crispy_field }}
+                        {{ order_form.phone_number | as_crispy_field }}
                     </fieldset>
+
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto text-dark">Delivery</legend>
+                        {{ order_form.country | as_crispy_field }}
+                        {{ order_form.postcode | as_crispy_field }}
+                        {{ order_form.town_or_city | as_crispy_field }}
+                        {{ order_form.address_line1 | as_crispy_field }}
+                        {{ order_form.address_line2 | as_crispy_field }}
+                        <div class="form-check form-check-inline float-right mr-0">
+							{% if user.is_authenticated %}
+								<label class="form-check-label text-dark" for="id-save-info">Save this delivery information to my profile</label>
+                                <input class="form-check-input ml-2 mr-0" type="checkbox" id="id-save-info" name="save-info" checked>
+							{% else %}
+								<label class="form-check-label" for="id-save-info">
+                                    <a class="text-dark" href="{% url 'account_signup' %}">Create an account</a> or 
+                                    <a class="text-dark" href="{% url 'account_login' %}">login</a> to save this information
+                                </label>
+							{% endif %}
+						</div>
+                    </fieldset>
+
+                    <fieldset class="px-3">
+                        <legend class="fieldset-label small text-black px-2 w-auto text-dark">Payment</legend>
+                        <!-- A Stripe card element will go here -->
+                        <div class="mb-3" id="card-element"></div>
+                        <!-- Used to display form errors -->
+                        <div class="mb-3 text-danger" id="card-errors" role="alert"></div>
+                    </fieldset>
+                    <div class="submit-button text-right mt-5 mb-2">                    
+						<a href="{% url 'view_bag' %}" class="btn btn-outline-black rounded-0">
+							<span class="icon">
+								<i class="fas fa-chevron-left"></i>
+							</span>
+							<span class="font-weight-bold">Adjust Bag</span>
+						</a>
+						<button id="submit-button" class="btn btn-black rounded-0">
+							<span class="font-weight-bold">Complete Order</span>
+							<span class="icon">
+								<i class="fas fa-lock"></i>
+							</span>
+						</button>
+						<p class="small text-danger my-0">
+							<span class="icon">
+								<i class="fas fa-exclamation-circle"></i>
+							</span>
+							<span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
+						</p>
+					</div>
 
                 </form>
             </div>
 
           </div>
-
     </div>
 
+    {% if bag_products %}
     <div class="col-5 text-center mt-4">
         <div class="card">
-            <div class="card-header">
-              Featured
+            <div class="card-header text-dark">
+                <h5 class="mb-0">Products in shopping bag: {{ product_count }}</h5>
             </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">An item</li>
-              <li class="list-group-item">A second item</li>
-              <li class="list-group-item">A third item</li>
-            </ul>
+
+          {% for product in bag_products %}
+          <div class="card-body">
+            <!-- Product -->
+            <div class="row">
+              <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+                <!-- Image -->
+                <div
+                  class="bg-image hover-overlay hover-zoom ripple rounded"
+                  data-mdb-ripple-color="light"
+                >
+                  <img
+                    src="{{ product.product.image.url }}"
+                    class="w-100"
+                    alt="{{ product.name }}"
+                  />
+                  <a href="#!">
+                    <div
+                      class="mask"
+                      style="background-color: rgba(251, 251, 251, 0.2)"
+                    ></div>
+                  </a>
+                </div>
+              </div>
+
+
+              <div class="col justify-content-center">
+
+                <p class="text-start text-md-center text-dark">
+                    {{ product.product.name }}
+                 </p>
+              
+                <!-- Price -->       
+
+                <div row>
+
+                    
+                <p class="text-start text-md-center text-dark">
+                   Price: £ {{ product.product.price }}
+                </p>
+
+                <p class="text-start text-md-center text-dark">
+                    Quantity: {{ product.quantity }}
+                 </p>
+
+                <p class="text-start text-md-center text-dark">
+                    Subtotal: £ {{ product.product.bag_total }}
+                  </p>
+
+
+              </div>
+            </div>
+          </div>
+
+          {% endfor %}
+
+          <hr class="my-0">
+                <div class="row text-dark text-right">
+                    <div class="col-7 offset-2">
+                        <p class="my-0">Order Total:</p>
+                        <p class="my-0">Delivery:</p>
+                        <p class="my-0">Grand Total:</p>
+                    </div>
+                    <div class="col-3">
+                        <p class="my-0">£{{ total | floatformat:2 }}</p>
+                        <p class="my-0">£{{ delivery | floatformat:2 }}</p>
+                        <p class="my-0"><strong>£{{ grand_total | floatformat:2 }}</strong></p>
+                    </div>
+                </div>
+
+        </div>
+        <div class="card mb-4">
+          <div class="card-body">
+            <p class="text-dark"><strong>Expected shipping delivery</strong></p>
+            <p class="mb-0 text-dark">Date</p>
+          </div>
+        </div>
+
+
+
+      </div>
+
+    </div>
+  </div>
+
+  {% else %}
+
+  <div class="container-fluid">
+    <!--Title-->
+    <div class="row">
+      <div class="col text-center mt-4">
+        <p class="mb-5 text-uppercase">Your bag is empty..</p>
+        <a
+          href="{% url 'products' %}"
+          class="btn rounded-0 btn-lg text-warning mb-4"
+        >
+          <span class="icon">
+            <i class="fas fa-chevron-left"></i>
+          </span>
+          <span class="text-uppercase">Keep Shopping</span>
+        </a>
+      </div>
+    </div>
+
+    {% endif %}
+            
+            
           </div>
 
   </div>
