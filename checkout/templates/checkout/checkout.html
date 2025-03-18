@@ -1,0 +1,55 @@
+{% extends "base.html" %} {% load static %} {% block page_header %}
+<div class="container header-container">
+  <div class="row">
+    <div class="col"></div>
+  </div>
+</div>
+{% endblock %} {% block content %}
+
+<div class="container-fluid">
+  <!--Title-->
+  <div class="row">
+    <div class="col text-center mt-4">
+      <h5 class="fw-bold text-uppercase">Check out</h5>
+      <hr class="w-50 mb-4" />
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-7 text-center mt-4">
+        <div class="card">
+            <div class="card-header">
+                <p class="text-dark">Please fill out the form below to complete your order</p>
+                <form action="{% url 'checkout' %}" method="POST" id="payment-form">
+
+                    {% csrf_token %}
+                    <fieldset class="rounded px-3 mb-5">
+                        <legend class="fieldset-label small text-black px-2 w-auto">Details</legend>
+                        {{ form.first_name | as_crispy_field }}
+                    </fieldset>
+
+                </form>
+            </div>
+
+          </div>
+
+    </div>
+
+    <div class="col-5 text-center mt-4">
+        <div class="card">
+            <div class="card-header">
+              Featured
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item">An item</li>
+              <li class="list-group-item">A second item</li>
+              <li class="list-group-item">A third item</li>
+            </ul>
+          </div>
+
+  </div>
+
+</div>
+
+
+{% endblock %}
