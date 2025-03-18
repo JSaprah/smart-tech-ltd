@@ -14,6 +14,7 @@ The bugs identified during the project
 
 3. Adding the shopping bag was causing the error of url not found. The reason for this was that I added '/bag' to the urls.py file of the bag app and also added this to the project urls.py file. This caused the error that the browser was looking for a url /bag/bag which it could not find. After removing /bag from the urls.py bag app the issue got resolved.
 
-4. Upon clicking on the substraction and addition button in the product detail page the shopping bag was being updated 
+4. Upon clicking on the substraction and addition button in the product detail page the shopping bag was being updated. Solution: Adding the preventDefault function solved prevented that the data was automatically send to the backend
 
-Solution: Adding the preventDefault function solved prevented that the data was automatically send to the backend
+
+5. While updating the product quantity in the bag and clicking on the save button the quantity would not be saved. I requested tutor support for this issue. Walking through this issue and adding some print statements, it appeared that the the function was recognising the button as an object instead of the form. Changing the function .prev to .closest helped solving this issue. 
