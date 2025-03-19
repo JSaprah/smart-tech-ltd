@@ -2,7 +2,7 @@
 {% load static %} 
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'checkout\static\checkout\css\checkout.css' %}">
+    <link rel="stylesheet" href="{% static 'checkout/css/checkout.css' %}">
 {% endblock %}
 
 
@@ -211,9 +211,7 @@
     {% endif %}
     
           </div>
-
   </div>
-
 </div>
 
 
@@ -223,5 +221,5 @@
     {{ block.super }}
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
-    <script src="{% static 'checkout\static\checkout\js\stripe_elements.js' %}"></script>
+    <script src="{% static 'checkout\js\stripe_elements.js' %}"></script>
 {% endblock %}
