@@ -8,7 +8,7 @@ from django_countries.fields import CountryField
 
 class UserProfile(models.Model):
     """
-    Model to save user order history and default delivery address
+    Model to save user order history and default delivery
     """
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     default_address_line1 = models.CharField(
