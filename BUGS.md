@@ -18,3 +18,11 @@ The bugs identified during the project
 
 
 5. While updating the product quantity in the bag and clicking on the save button the quantity would not be saved. I requested tutor support for this issue. Walking through this issue and adding some print statements, it appeared that the the function was recognising the button as an object instead of the form. Changing the function .prev to .closest helped solving this issue. 
+
+6. Submitting the checkout form was causing the issue: fadeToggle() is not a function. After debugging it appeared that I was using a Jquery version that did not want to take this as a function. I changed it from minified version to the slim version. This solved the issue. 
+
+7. After resolving the previous issue I encountered a follow up issue; The form was now being submitted and the data was send to Stripe. However, the response was being returned as none instead of HTTPResponse. After debugging I saw that I was missing a field - last name in mt view. After adding the view my issue got resolved.
+
+8. Remove function in the bag was not working. Having a look at it it appeared that I added the remove in the type instead of the the class. Therefore the function was not being triggered.
+
+9. In my shopping bag upon updating the quantity, input fields for all product would change. To solve this I requested tutor support. Looking at the walkthrough project, the support team advised me to make use of the function closest to only interact with the product. This solution worked out for me. 

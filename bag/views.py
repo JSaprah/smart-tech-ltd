@@ -14,6 +14,7 @@ def view_bag(request):
 def add_product_to_bag(request, product_id):
     """ A view to add products to the bag with the selected quantity """
 
+    product = Product.objects.get(pk=product_id)
     quantity = int(request.POST.get('quantity'))
     redirect_url = request.POST.get('redirect_url')
     bag = request.session.get('bag', {})
@@ -22,6 +23,7 @@ def add_product_to_bag(request, product_id):
         bag[product_id] += quantity
     else:
         bag[product_id] = quantity
+        messages.success(request, f'Added {product.name} to your bag')
 
     request.session['bag'] = bag
 
