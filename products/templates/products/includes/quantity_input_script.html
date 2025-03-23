@@ -28,9 +28,9 @@
     //Substraction button click
     $substractionButton.click(function (e) {
       e.preventDefault();
-      let currentInput = parseInt($quantityInput.val());
-      currentInput = parseInt(currentInput);
-      let newInput = currentInput - 1;
+      let closestInput = $(this).closest('.input-group').find('.quantity_input')[0];
+      let currentInput = parseInt($(closestInput).val());
+      let newInput = $(closestInput).val(currentInput - 1);
 
       if (newInput < 1) {
         newInput = 1;
@@ -45,9 +45,9 @@
     //Addition button click
     $addButton.click(function (e) {
       e.preventDefault();
-      let currentInput = parseInt($quantityInput.val());
-      currentInput = parseInt(currentInput);
-      let newInput = currentInput + 1;
+      let closestInput = $(this).closest('.input-group').find('.quantity_input')[0];
+      let currentInput = parseInt($(closestInput).val());
+      let newInput = $(closestInput).val(currentInput + 1);
 
       if (newInput > 99) {
         newInput = 99;
@@ -56,6 +56,12 @@
       $quantityInput.val(newInput);
       var itemId = $(this).data("item_id");
       handleEnableDisable(itemId);
+
+
+      console.log(" closest input = ", closestInput)
+      console.log(" new input = ", newInput)
+      console.log(" current input = ", currentInput)
+
     });
 
   });

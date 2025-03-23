@@ -2,25 +2,30 @@
 
 <!doctype html>
 <html lang="en">
-  <head>
 
+  <head>
+    <!--Meta block-->
     {% block meta %}
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta charset="utf-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     {% endblock %}
 
+    <!--Extra meta block-->
     {% block extra_meta %}
     {% endblock %}
 
+    <!--Core CSS block-->
     {% block corecss %}
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
-        {% endblock %}
+    {% endblock %}
 
+    <!--Extra core CSS block-->
     {% block extra_css %}
     {% endblock %}
 
+    <!--Core js block-->
     {% block corejs %}
     <script src="https://kit.fontawesome.com/1940912b0a.js" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -32,13 +37,17 @@
 
     {% endblock %}
 
+    <!--Extra js block-->
     {% block extra_js %}
     {% endblock %}
 
-    <title>Smart Tech {% block extra_title %}{% endblock %}</title>
+    <title>Smart Tech {% block extra_title %}{% endblock %}</title>  
   </head>
+
+
   <body>
     <header class="container-fluid header">
+        
         <div class="row d-none d-lg-flex">
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
@@ -64,6 +73,7 @@
             <!--My account-->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
+                    
                     <li class="list-inline-item dropdown">
                         <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
@@ -84,6 +94,15 @@
                             {% endif %}
                         </div>
                     </li>
+
+                    <li class="list-inline-item">
+                        <a href="{% url 'wishlist' %}" class="text-light font-weight-bold">
+                            <div class="text-center"><i class="fa-solid fa-heart fa-lg"></i></div>
+                            <p>Wishlist</p>
+                        </a>
+                    </li>
+
+                    
                     <!--Shopping bag-->
                     <li class="list-inline-item">
                         <a class="{% if total %}text-light font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
