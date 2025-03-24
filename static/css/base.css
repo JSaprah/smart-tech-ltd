@@ -71,9 +71,8 @@ hr {
 }
 
 .heart-icon{
-    color: rgb(234, 117, 117);
+    color: rgb(182, 166, 166);
 }
-
 .heart-icon:hover{
     color: red;
 }
@@ -81,4 +80,3 @@ hr {
 .heart-icon.added{
     color: red;
 }
-
