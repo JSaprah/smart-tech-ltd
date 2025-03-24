@@ -69,3 +69,16 @@ hr {
 .toast-capper {
     height: 2px;
 }
+
+.heart-icon{
+    color: rgb(234, 117, 117);
+}
+
+.heart-icon:hover{
+    color: red;
+}
+
+.heart-icon.added{
+    color: red;
+}
+

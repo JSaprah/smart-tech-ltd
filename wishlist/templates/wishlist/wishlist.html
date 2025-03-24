@@ -7,7 +7,78 @@
 {% endblock %} {% block content %}
 
 <div class="container-fluid">
-    <p>test</p>
+  <!--Title-->
+  <div class="row">
+    <div class="col text-center mt-4">
+      <h5 class="fw-bold text-uppercase">Wishlist</h5>
+      <hr class="w-50 mb-4" />
+    </div>
+  </div>
+
+  {% if wishlist_items %}
+
+  <div class="container h-100 bg-white">
+    <div class="row d-flex justify-content-center my-4 text-dark">
+      {% for product in wishlist_items %}
+
+      <div class="card-body">
+        <!-- Product -->
+        <div class="row">
+          <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
+            <!-- Image -->
+            <div
+              class="bg-image hover-overlay hover-zoom ripple rounded"
+              data-mdb-ripple-color="light"
+            >
+              <img
+                src="{{ product.product.image.url }}"
+                class="w-50 h-50"
+                alt="{{ product.product.name }}"
+              />
+              <a href="#!">
+                <div
+                  class="mask"
+                  style="background-color: rgba(251, 251, 251, 0.2)"
+                ></div>
+              </a>
+            </div>
+          </div>
+
+          <!-- Product details -->
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            <p class="bg-warning"><strong>{{ product.product.name }}</strong></p>
+            <p><strong>£{{ product.product.price }}</strong></p>
+            <p>{{ product.product.description }}</p>
+          </div>
+
+        <!--Update and remove button-->
+        <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
+
+          <a href="{% url 'add_product_to_bag' product.product_id %}" class="btn btn-success me-1 mb-2 col-12">
+            <div>
+              <i class="fa-solid fa-bag-shopping"></i><span class="ml-2">Add to bag</span>
+            </div>
+          </a>
+
+          <a href="{% url 'remove_from_wishlist' product.product_id %}" class="btn btn-danger me-1 mb-2 col-12">
+            <div>
+              <i class="fa-solid fa-trash"></i><span class="ml-2">Remove from wishlist</span>
+            </div>
+          </a>
+
+      </div>
+      </div>
+    </div>
+
+      {% endfor %} {% else %}
+
+      <p>Your wishlist is empty.</p>
+
+      {% endif %}
+    </div>
+
+  </div>
 </div>
 
-{% endblock %}
+    {% endblock %}
+
