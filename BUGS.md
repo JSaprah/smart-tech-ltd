@@ -26,3 +26,16 @@ The bugs identified during the project
 8. Remove function in the bag was not working. Having a look at it it appeared that I added the remove in the type instead of the the class. Therefore the function was not being triggered.
 
 9. In my shopping bag upon updating the quantity, input fields for all product would change. To solve this I requested tutor support. Looking at the walkthrough project, the support team advised me to make use of the function closest to only interact with the product. This solution worked out for me. 
+
+10. Creating the wishlist model I created only one class for the wishlist. I worked on the feature adding the product to the wishlist. This worked all really well, untill I decided to work on the remove from wishlist function. I discovered, instead of adding the products to the wishlist, it was creating every time a new wishlist with a unique combination. I did some research and understood that I have to create two classes; One for the wishlist and one for the items with a relation between them. Upon changing the model, I came across many errors. It had some data save in my wishlist model, therefore it was not able take my changes. I deleted the older migration files and tried to do the rework, but it did not work. I had a talk with tutor support and with the following approach, I managed to delete all items in the wislist table. 
+ - Run command: python manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude wishlist > db.json
+ - Rename file db.sqlite3 to db.backup.sqlite3.
+ - Run command: python manage.py migrate
+ - Run command: python manage.py loaddata new.json
+ 
+ This made sure that I had a backup before making changes as the the db.backup.sqlite3 file contains the previous data, with the broken wishlist data, your new dbs.qlite3 file contains all of your old data except for the wishlist data.
+
+
+ 11. Heroku deployment failed with the reason that there is no static root in the settings. By adding the static root in the settings the deployment went succesfull with all static and media files loaded.
+
+ 12. Deployment to Production via Heroku. I followed all deployment steps carefully and my site was configured correctly. With One issue that the bag was not loading in Production - I got a server error 500. Unfortunatelly, I was not able to see what exactly was going wrong, there I was advice to put the Debug to True and make a deployment to identify and solve the issues. After putting the debuug to True, it apeared that a the quantity_input_script.html template was not working correctly. The issue was that I used backslashes in the url instead of /. Changing this and deploying it back to production solved the issue. 
