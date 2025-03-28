@@ -1,14 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from products.models import Product
-from .models import Review
 from .forms import ReviewForm
+from .models import Review
+
 
 # Create your views here.
-
-
-
-
 @login_required
 def add_review(request, product_id):
     product = get_object_or_404(Product, id=product_id)
@@ -24,4 +21,17 @@ def add_review(request, product_id):
     else:
         form = ReviewForm()
 
-    return render(request, 'reviews/add_reviews.html', {'form': form, 'product': product})
+    return render(
+        request, {'form': form, 'product': product}
+        )
+
+
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+
+    if request.method == 'POST':
+        review.delete()
+        return redirect('product_detail', product_id=review.product.id)
+
+    return render(request, 'reviews/confirm_delete.html', {'review': review})

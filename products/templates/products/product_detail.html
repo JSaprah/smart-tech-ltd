@@ -140,8 +140,18 @@
           <input type="hidden" name="redirect_url" value="{{ request.path }}" />
         </div>
       </form>
+
+          <!--Delete and edit button-->
+  {% if request.user.is_superuser %}
+
+  <a class="btn btn-light" href="{% url 'edit_product' product.id %}">Edit</a>
+  <a class="btn btn-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+
+{% endif %}
     </div>
+
   </div>
+
 
   <!--Product review form-->
   <div class="row">
@@ -183,6 +193,7 @@
               <button class="btn btn-black rounded-0" type="submit">
                 Add Review
               </button>
+              
             </div>
           </form>
           {% else %}
@@ -192,6 +203,7 @@
       </div>
     </div>
   </div>
+
 
   {% endblock %}
   
