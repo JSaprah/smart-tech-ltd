@@ -4,7 +4,7 @@ from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
-
+from reviews .forms import ReviewForm
 from .forms import ProductForm
 
 # Create your views here.
@@ -52,11 +52,14 @@ def all_products(request):
 
     current_sorting = f'{sort}_{direction}'
 
+    # reviews = products.product_review.all()
+
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        # 'reviews': reviews,
     }
 
     return render(request, 'products/products.html', context)
@@ -66,9 +69,18 @@ def product_detail(request, product_id):
     """ A view to return the individual product details based on the product id """
 
     product = get_object_or_404(Product, pk=product_id)
+    reviews = product.product_review.all()
+
+    if request.user.is_authenticated:
+        form = ReviewForm()
+
+    else:
+        form = None
 
     context = {
         'product': product,
+        'reviews': reviews,
+        'form': form,
     }
 
     return render(request, 'products/product_detail.html', context)

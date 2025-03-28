@@ -25,7 +25,6 @@ def wishlist(request):
     return render(request, template, context)
 
 
-
 @login_required
 def add_to_wishlist(request, product_id):
     """ A view to add products to the wishlist """
@@ -46,7 +45,6 @@ def add_to_wishlist(request, product_id):
     return redirect(request.META.get('HTTP_REFERER', '/'))
 
 
-
 @login_required
 def remove_from_wishlist(request, product_id):
     """ A view to remove products from the wishlist """
@@ -56,16 +54,10 @@ def remove_from_wishlist(request, product_id):
 
     # Attempt to delete the item
     deleted_count, _ = WishlistItem.objects.filter(wishlist=wishlist, product_id=product_id).delete()
-    
+
     if deleted_count > 0:
         messages.info(request, "Removed from your wishlist.")
     else:
         messages.warning(request, "Item could not be removed.")
 
     return redirect(request.META.get('HTTP_REFERER', '/'))
-
-
-
-
-
-
