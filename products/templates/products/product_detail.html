@@ -141,75 +141,90 @@
         </div>
       </form>
 
-          <!--Delete and edit button-->
-  {% if request.user.is_superuser %}
+      <!--Delete and edit button-->
+      {% if request.user.is_superuser %}
 
-  <a class="btn btn-light" href="{% url 'edit_product' product.id %}">Edit</a>
-  <a class="btn btn-danger" href="{% url 'delete_product' product.id %}">Delete</a>
+      <a class="btn btn-light" href="{% url 'edit_product' product.id %}"
+        >Edit</a
+      >
+      <a class="btn btn-danger" href="{% url 'delete_product' product.id %}"
+        >Delete</a
+      >
 
-{% endif %}
+      {% endif %}
     </div>
-
   </div>
 
-
   <!--Product review form-->
-  <div class="row">
-    <div class="col-md-7 text-center mt-4">
-      <div class="card text-dark">
-        {% if reviews %}
-        {% for review in reviews %}
+  <section class="h-100 gradient-custom">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        
+          {% if reviews %} 
+
+          <div class="col-md-8 card-header text-light text-center">
+            {% for review in reviews %}
+    <div class="border border-light rounded mb-2">
         <p>{{ review.author.username }}</p>
         <p>{{ review.rating }}</p>
         <p>{{ review.title }}</p>
         <p>{{ review.content }}</p>
         <p>{{ review.created_at }}</p>
-        {% endfor %}
-        {% else %}
-        <p>No reviews yet. Be the first one to review this product!</p>
-        {% endif %}
-      </div>
-    </div>
-    <!--Form-->
 
-    <div class="col-md-5 text-center mt-4">
-      <div class="card">
-        <div class="card-header">
-          {% if user.is_authenticated %}
-          <p class="text-dark">Add review</p>
-          <form
-            method="POST"
-            action="{% url 'add_review' product.id %}"
-            class="form mb-2"
-            enctype="multipart/form-data"
-          >
-            {% csrf_token %} {{ form | crispy }}
-            <div class="text-right">
-              <a
-                class="btn btn-outline-black rounded-0"
-                href="{% url 'products' %}"
-                >Cancel</a
-              >
-              <button class="btn btn-black rounded-0" type="submit">
-                Add Review
-              </button>
-              
-            </div>
-          </form>
+        {% if review.author == user %}
+        <form method="POST" action="{% url 'delete_review' review.id %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-light"><strong>Delete review</strong></button>
+        </form>
+    {% endif %}
+    
+    </div>
+
+{% endfor %}
+
+        </div>
+          
           {% else %}
-          <p class="text-dark">You must be logged in to write a review</p>
+          <p>No reviews yet. Be the first one to review this product!</p>
           {% endif %}
         </div>
       </div>
+      <!--Form-->
+
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 card-header">
+          <div class="card-header text-light">
+            {% if user.is_authenticated %}
+            <p class="text-light">Add review</p>
+            <form
+              method="POST"
+              action="{% url 'add_review' product.id %}"
+              class="form mb-2"
+              enctype="multipart/form-data"
+            >
+              {% csrf_token %} {{ form | crispy }}
+              <div class="text-right">
+                <a
+                  class="btn btn-light rounded-0"
+                  href="{% url 'products' %}"
+                  >Cancel</a
+                >
+                <button class="btn btn-warning rounded-0" type="submit">
+                  Add Review
+                </button>
+              </div>
+            </form>
+            {% else %}
+            <p class="text-light text-center">You must be logged in to write a review</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-
-
-  {% endblock %}
-  
-  {% block postloadjs %} {{ block.super }} 
-  
-  {% include 'products/includes/quantity_input_script.html' %} 
-  
-  {% endblock %}
+  </section>
 </div>
+
+{% endblock %} 
+{% block postloadjs %} 
+{{ block.super }} 
+{% include 'products/includes/quantity_input_script.html' %} {% endblock %}
