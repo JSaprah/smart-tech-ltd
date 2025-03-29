@@ -47,8 +47,8 @@
 
   <body>
     <header class="container-fluid header">
-        
-        <div class="row d-none d-lg-flex">
+        <div class="row">
+            <!--Home logo-->
             <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
                 <a href="{% url 'home' %}" class="nav-link main-logo-link">
                     <h1 class="logo-font text-warning my-0 text-uppercase"><strong>Smart Tech</strong></h1>
@@ -56,12 +56,12 @@
             </div>
 
             <!--Search function-->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
-                <form method="GET" action="{% url 'products' %}">
-                    <div class="input-group w-100">
-                        <input class="form-control border border-black rounded-0" type="text" name="q" placeholder="Search our site">
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-flex">
+                <form method="GET" action="{% url 'products' %}" class="w-100">
+                    <div class="input-group">
+                        <input class="form-control rounded-0" type="text" name="q" placeholder="Search for products">
                         <div class="input-group-append">
-                            <button class="form-control btn btn-warning border border-black rounded-0" type="submit">
+                            <button class="form-control btn btn-warning rounded-0" type="submit">
                                 <span class="icon">
                                     <i class="fa-solid fa-magnifying-glass"></i>
                                 </span>
@@ -70,12 +70,14 @@
                     </div>
                 </form>
             </div>
-            <!--My account-->
-            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0">
+
+            <!--Base menu-->
+            <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-block">
                 <ul class="list-inline list-unstyled text-center text-lg-right my-0">
-                    
+
+                    <!--My account-->
                     <li class="list-inline-item dropdown">
-                        <a class="text-black nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <a class="font-weight-bold nav-link" href="#" id="user-options" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="text-center">
                                 <div><i class="fa-solid fa-user fa-lg"></i></div>
                                 <p class="my-0">My Account</p>
@@ -95,24 +97,19 @@
                         </div>
                     </li>
 
+                    <!--Wishlist-->
                     <li class="list-inline-item">
-                        <a href="{% url 'wishlist' %}" class="text-light font-weight-bold">
-                            <div class="text-center"><i class="fa-solid fa-heart fa-lg"></i></div>
+                        <a class="font-weight-bold nav-link" href="{% url 'wishlist' %}">
+                            <div class="text-center">
+                                <i class="fa-solid fa-heart fa-lg"></i>
+                            </div>
                             <p>Wishlist</p>
                         </a>
-                    </li>
+                    </li>   
 
-                    <li class="list-inline-item">
-                        <a href="{% url 'contact' %}" class="text-light font-weight-bold">
-                            <div class="text-center"><i class="fa-solid fa-message fa-lg"></i></div>
-                            <p>Contact</p>
-                        </a>
-                    </li>
-
-                    
                     <!--Shopping bag-->
                     <li class="list-inline-item">
-                        <a class="{% if total %}text-light font-weight-bold{% else %}text-black{% endif %} nav-link" href="{% url 'view_bag' %}">
+                        <a class="font-weight-bold nav-link" href="{% url 'view_bag' %}">
                             <div class="text-center">
                                 <div>
                                     <i class="fa-solid fa-bag-shopping fa-lg"></i>
@@ -131,8 +128,9 @@
             </div>
         </div>
 
-        <div class="row bg-white">
-            <nav class="navbar navbar-expand-lg navbar-light w-100">
+        <!--Toggle navigation-->
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-dark w-100"> <!-- Change navbar-light to navbar-dark -->
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-nav" aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -141,8 +139,10 @@
             </nav>
         </div>
         
+        
     </header>
 
+    <!--Messages-->
     {% if messages %}
         <div class="message-container">
 
@@ -163,20 +163,21 @@
         </div>
     {% endif %}
 
+    <!--Block page_header-->
     {% block page_header %}
     {% endblock %}
 
+    <!--Block content-->
     {% block content %}
     <div class="content-container"></div>
     {% endblock %}
 
+    <!--Block postloadjs-->
     {% block postloadjs %}
-
     <script type="text/javascript">
         $('.toast').toast('show');
         console.log('add to bag clicked')
       </script>
-
     {% endblock %}
     
   </body>
