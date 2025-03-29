@@ -23,13 +23,18 @@
       <div class="row">
           <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
               <div class="sort-select-wrapper w-50">
-                  <select id="sort-selector" class="custom-select custom-select-sm border border-{% if current_sorting != 'None_None' %}warning{% else %}black{% endif %}">
-                      <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
-                      <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
-                      <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
-                      <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
-                      <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
-                  </select>
+                <select id="sort-selector" class="custom-select custom-select-sm border border-{% if current_sorting != 'None_None' %}warning{% else %}black{% endif %}">
+                  <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
+                  <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
+                  <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
+                  <option value="name_asc" {% if current_sorting == 'name_asc' %}selected{% endif %}>Name (A-Z)</option>
+                  <option value="name_desc" {% if current_sorting == 'name_desc' %}selected{% endif %}>Name (Z-A)</option>
+                  
+                  <!-- Show category options only on /products/ -->
+                  <option value="category_asc" {% if current_sorting == 'category_asc' %}selected{% endif %}>Category (A-Z)</option>
+                  <option value="category_desc" {% if current_sorting == 'category_desc' %}selected{% endif %}>Category (Z-A)</option>
+
+              </select>
               </div>
           </div>
           <!-- Search Results -->
@@ -88,3 +93,32 @@
 </div>
 {% endblock %}
 
+
+{% block extra_js %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const sortSelector = document.getElementById('sort-selector');
+    if (sortSelector) {
+        sortSelector.addEventListener('change', function () {
+            const selectedValue = this.value;
+            const urlParams = new URLSearchParams(window.location.search);
+
+            if (selectedValue === 'reset') {
+                urlParams.delete('sort');
+                urlParams.delete('direction');
+            } else {
+                const [sort, direction] = selectedValue.split('_');
+                urlParams.set('sort', sort);
+                urlParams.set('direction', direction);
+            }
+
+            // Redirect with updated query parameters
+            const newUrl = `${window.location.pathname}?${urlParams.toString()}`;
+            window.location.href = newUrl;
+        });
+    }
+});
+
+</script>
+{% endblock %}
