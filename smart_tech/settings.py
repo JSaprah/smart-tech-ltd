@@ -33,7 +33,7 @@ DEBUG = 'DEVELOPMENT' in os.environ
 ALLOWED_HOSTS = [
     '127.0.0.1',  # local host
     'localhost',  # listen for stripe webhooks
-    'smart-tech-ltd-89566b21efa9.herokuapp.com'
+    'smart-tech-ltd-89566b21efa9.herokuapp.com',
 ]
 
 # Application definition
