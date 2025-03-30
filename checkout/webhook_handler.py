@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-
+from profiles.models import UserProfile
 from .models import Order, OrderLineItem
 from products.models import Product
 
@@ -45,6 +45,20 @@ class StripeWH_Handler:
             if value == "":
                 shipping_details.address[field] = None
 
+        # Update profile information if save_info was checked
+        profile = None
+        username = intent.metadata.username
+        if username != 'AnonymousUser':
+            profile = UserProfile.objects.get(user__username=username)
+            if save_info:
+                profile.default_phone_number = shipping_details.phone
+                profile.default_country = shipping_details.address.country
+                profile.default_postcode = shipping_details.address.postal_code
+                profile.default_town_or_city = shipping_details.address.city
+                profile.default_address_line1 = shipping_details.address.line1
+                profile.default_address_line2 = shipping_details.address.line2
+                profile.save()
+
         order_exists = False
         attempt = 1
         while attempt <= 5:
@@ -56,8 +70,8 @@ class StripeWH_Handler:
                     country__iexact=shipping_details.address.country,
                     postcode__iexact=shipping_details.address.postal_code,
                     town_or_city__iexact=shipping_details.address.city,
-                    street_address1__iexact=shipping_details.address.line1,
-                    street_address2__iexact=shipping_details.address.line2,
+                    address_line1__iexact=shipping_details.address.line1,
+                    address_line2__iexact=shipping_details.address.line2,
                     county__iexact=shipping_details.address.state,
                     grand_total=grand_total,
                     original_bag=bag,
@@ -70,13 +84,15 @@ class StripeWH_Handler:
                 time.sleep(1)
         if order_exists:
             return HttpResponse(
-                content=f'Webhook received: {event["type"]} | SUCCESS: Verified order already in database',
+                content=f'Webhook received: {event["type"]} | SUCCESS: \
+                    Verified order already in database',
                 status=200)
         else:
             order = None
             try:
                 order = Order.objects.create(
                     full_name__iexact=shipping_details.name,
+                    user_profile=profile,
                     email__iexact=shipping_details.email,
                     phone_number__iexact=shipping_details.phone,
                     country__iexact=shipping_details.country,
@@ -105,7 +121,8 @@ class StripeWH_Handler:
                     status=500)
 
         return HttpResponse(
-            content=f'Webhook received: {event["type"]} | SUCCESS: Created order in webhook',
+            content=f'Webhook received: {event["type"]} | SUCCESS: Created \
+                order in webhook',
             status=200)
 
     def handle_payment_intent_payment_failed(self, event):
