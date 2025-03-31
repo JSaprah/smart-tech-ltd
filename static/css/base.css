@@ -6,7 +6,27 @@ html{
 
 body{
     background-color:#484848;
-    color: #fafafa;
+    color: #fafafa; 
+}
+
+footer{
+    margin-top: auto;
+}
+
+h1{
+    font-family: "Lora", sans-serif;
+}
+
+h2, h3{
+    font-family: "Montserrat", sans-serif;
+}
+
+h5, p{
+    font-family: "Roboto", sans-serif;
+}
+
+p{
+    font-size: 20px;
 }
 
 .header{
@@ -81,3 +101,8 @@ hr {
     color: red;
 }
 
+#mc_embed_signup{
+    clear:left;
+    font:14px Helvetica,Arial,sans-serif; 
+    max-width: 600px;
+}
