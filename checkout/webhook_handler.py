@@ -26,7 +26,7 @@ class StripeWH_Handler:
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
 
-    def send_confirmation_email(self, order):
+    def _send_confirmation_email(self, order):
         """Send the user a confirmation email"""
 
         print('Trigger send confirmation email')
