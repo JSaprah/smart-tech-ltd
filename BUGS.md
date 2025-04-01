@@ -1,11 +1,10 @@
-## Bugs
+## Bugs and Fixes During the Development Process
 
 The bugs identified during the project
 
 1. 
     - Issue 1: When inserting a icon in my base file, this was not visible on my screen. I opened the console and I saw some error messages.  
-    ![fontawesome error](fontawesomeerror.png)  
-    
+
     - Solution: This issue got resolved by adding my personal fontawesome kit to the base file. 
 
 2. 
@@ -41,3 +40,16 @@ The bugs identified during the project
  12. Deployment to Production via Heroku. I followed all deployment steps carefully and my site was configured correctly. With One issue that the bag was not loading in Production - I got a server error 500. Unfortunatelly, I was not able to see what exactly was going wrong, there I was advice to put the Debug to True and make a deployment to identify and solve the issues. After putting the debuug to True, it apeared that a the quantity_input_script.html template was not working correctly. The issue was that I used backslashes in the url instead of /. Changing this and deploying it back to production solved the issue. 
  
  13. I added the reviews model and I was trying to do the migrations. This was showing that there are no changes detected. I had to put the new app in the installed apps first to be able to make migrations.
+
+ 14. I made a deployment and afterwards I added the reviews model. This caused the issue that the production environment (Heroku) did not take the latest migrations. I had to run the migrate command in Heroku to solve this issue.
+
+ 15. I was not receiving confirmation email for order. This was because of a spelling mistake in the folder name.
+
+ 16. The searchbars were working fine on the smaller and larger screen, untill I opened the search on the smaller screen and made it larger; I had two searchbars! This was because I made the display for the larger searchbar hidden, but vice and versa I did not add the d-lg-none of the smaller search bar. I could solve it by adding the display to false.
+
+ ## Testing
+
+ ### Manual testing
+
+
+

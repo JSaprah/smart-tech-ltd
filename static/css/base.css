@@ -95,14 +95,15 @@ hr {
     height: 2px;
 }
 
-.heart-icon{
-    color: rgb(182, 166, 166);
-}
-.heart-icon:hover{
-    color: red;
+.heart-icon.added {
+    color: darkred;
 }
 
-.heart-icon.added{
+.heart-icon.not-added {
+    color: rgb(182, 166, 166);
+}
+
+.heart-icon:hover {
     color: red;
 }
 

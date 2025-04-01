@@ -10,14 +10,11 @@ from django.contrib import messages
 @login_required
 def wishlist(request):
     """ A view to display the wishlist """
-
-    # Fetch the wishlist associated with the logged-in user
     try:
         wishlist = Wishlist.objects.get(user=request.user)
-        # Retrieve all the items in the wishlist
         wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
     except Wishlist.DoesNotExist:
-        wishlist_items = []  # If the wishlist doesn't exist, show an empty list
+        wishlist_items = []
 
     context = {'wishlist_items': wishlist_items}
     template = 'wishlist/wishlist.html'

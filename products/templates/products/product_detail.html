@@ -53,9 +53,12 @@
         class="text-light font-weight-bold"
       >
         <div>
-          <i
-            class="fa-solid fa-heart fa-2x heart-icon {% if product.product_id in wishlist_items %}added{% else %}not-added{% endif %}"
-          ></i>
+          <i class="fa-solid fa-heart fa-2x heart-icon {% if product.id in wishlist_items %}added{% else %}not-added{% endif %}"></i>
+
+          <p>Wishlist items: {{ wishlist_items }}</p>
+          <p>Current product ID: {{ product.id }}</p>
+          
+
         </div>
       </a>
 

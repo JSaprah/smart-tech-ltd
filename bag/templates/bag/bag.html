@@ -18,6 +18,7 @@
       <hr class="w-50 mb-4" />
     </div>
   </div>
+  </div>
 
   {% if bag_products %}
   <div class="container h-100">
@@ -62,9 +63,7 @@
               </a>
             </div>
           </div>
-
-
-              
+            
               {% endif %}
               <!-- Product details -->
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
@@ -196,10 +195,11 @@
         </a>
       </div>
     </div>
-
-    {% endif %} {% endblock %}
+    {% endif %}
   </div>
 </div>
+    {% endblock %}
+
 
 {% block postloadjs %}
 {{ block.super }}
