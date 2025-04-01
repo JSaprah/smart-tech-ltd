@@ -96,11 +96,12 @@ hr {
 }
 
 .heart-icon.added {
-    color: darkred;
+    color: rgb(255, 0, 0);
 }
 
+
 .heart-icon.not-added {
-    color: rgb(182, 166, 166);
+    color: rgb(135, 110, 110); ;
 }
 
 .heart-icon:hover {

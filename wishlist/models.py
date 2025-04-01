@@ -17,7 +17,3 @@ class WishlistItem(models.Model):
 
     class Meta:
         unique_together = ('wishlist', 'product')
-
-
-
-

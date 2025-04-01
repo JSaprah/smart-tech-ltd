@@ -4,9 +4,8 @@ from products.models import Product
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 
+
 # Create your views here.
-
-
 @login_required
 def wishlist(request):
     """ A view to display the wishlist """

@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from reviews .forms import ReviewForm
 from .forms import ProductForm
 from django.db.models.functions import Lower
+from wishlist.models import WishlistItem
 
 
 # Create your views here.
@@ -67,10 +68,12 @@ def product_detail(request, product_id):
     """ A view to return the individual product details based on /
     the product id """
 
+    in_wishlist = False
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.product_review.all()
 
     if request.user.is_authenticated:
+        in_wishlist = WishlistItem.objects.filter(wishlist__user=request.user, product=product).exists()
         form = ReviewForm()
 
     else:
@@ -79,6 +82,7 @@ def product_detail(request, product_id):
     context = {
         'product': product,
         'reviews': reviews,
+        'in_wishlist': in_wishlist,
         'form': form,
     }
 
