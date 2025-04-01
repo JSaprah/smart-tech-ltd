@@ -3,14 +3,12 @@ from .models import Category, Product
 from django.contrib import messages
 from django.db.models import Q
 from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
 from reviews .forms import ReviewForm
 from .forms import ProductForm
 from django.db.models.functions import Lower
 
+
 # Create your views here.
-
-
 def all_products(request):
     """ A view to return a list of all products """
 
@@ -45,10 +43,12 @@ def all_products(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.error(request, "You didn't enter any search criteria!")
+                messages.error(
+                    request, "You didn't enter any search criteria!")
                 return redirect(reverse('products'))
 
-            queries = Q(name__icontains=query) | Q(description__icontains=query)
+            queries = Q(
+                name__icontains=query) | Q(description__icontains=query)
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
@@ -64,7 +64,8 @@ def all_products(request):
 
 
 def product_detail(request, product_id):
-    """ A view to return the individual product details based on the product id """
+    """ A view to return the individual product details based on /
+    the product id """
 
     product = get_object_or_404(Product, pk=product_id)
     reviews = product.product_review.all()
@@ -83,6 +84,7 @@ def product_detail(request, product_id):
 
     return render(request, 'products/product_detail.html', context)
 
+
 @login_required
 def add_product(request):
     """ Add a product to the store """
@@ -98,7 +100,9 @@ def add_product(request):
             messages.success(request, 'Successfully added product!')
             return redirect(reverse('add_product'))
         else:
-            messages.error(request, 'Failed to add product. Please ensure the form is valid.')
+            messages.error(
+                request, 'Failed to add product. Please ensure the form is /'
+                'valid.')
     else:
         form = ProductForm()
    
@@ -127,7 +131,8 @@ def edit_product(request, product_id):
             messages.success(request, 'Successfully updated product!')
             return redirect(reverse('product_detail', args=[product.id]))
         else:
-            messages.error(request, 'Failed to update product. Please ensure the form is valid.')
+            messages.error(request, 'Failed to update product. /'
+                           'Please ensure the form is valid.')
     else:
         form = ProductForm(instance=product)
         messages.info(request, f'You are editing {product.name}')

@@ -25,25 +25,33 @@
         <!-- Product -->
         <div class="row">
           <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
-            <!-- Image -->
-            <div
+                <!-- Image -->
+                {% if product.product.image %}
+                <div
+                  class="bg-image hover-overlay hover-zoom ripple rounded"
+                  data-mdb-ripple-color="light"
+                >
+                  <img
+                    src="{{ product.product.image.url }}"
+                    class="w-100"
+                    alt="{{ product.product.name }}"
+                  />
+                  <a href="#!">
+                  </a>
+                </div>
+              </div>
+              {% else %}
+
+              <div
               class="bg-image hover-overlay hover-zoom ripple rounded"
               data-mdb-ripple-color="light"
             >
-              <img
-                src="{{ product.product.image.url }}"
-                class="w-50 h-50"
-                alt="{{ product.product.name }}"
-              />
+            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
               <a href="#!">
-                <div
-                  class="mask"
-                  style="background-color: rgba(251, 251, 251, 0.2)"
-                ></div>
               </a>
             </div>
           </div>
-
+{% endif %}
           <!-- Product details -->
           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
             <p class="bg-warning"><strong>{{ product.product.name }}</strong></p>
@@ -51,12 +59,12 @@
             <p>{{ product.product.description }}</p>
           </div>
 
-        <!--Update and remove button-->
+        <!--Go to details page and remove button-->
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
 
-          <a href="{% url 'add_product_to_bag' product.product_id %}" class="btn btn-success me-1 mb-2 col-12">
+          <a href="{% url 'product_detail' product.product.id %}" class="btn btn-success me-1 mb-2 col-12">
             <div>
-              <i class="fa-solid fa-bag-shopping"></i><span class="ml-2">Add to bag</span>
+              <i class="fa-solid fa-bag-shopping"></i><span class="ml-2">Go to product</span>
             </div>
           </a>
 
@@ -72,7 +80,23 @@
 
       {% endfor %} {% else %}
 
-      <p>Your wishlist is empty.</p>
+      <div class="container-fluid">
+        <!--Title-->
+        <div class="row">
+          <div class="col text-center mt-4">
+            <p class="mb-5 text-uppercase">Your wishlist is empty..</p>
+            <a
+              href="{% url 'products' %}"
+              class="btn rounded-0 btn-lg text-warning mb-4"
+            >
+              <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+              </span>
+              <span class="text-uppercase">Go back</span>
+            </a>
+          </div>
+        </div>
+    
 
       {% endif %}
     </div>

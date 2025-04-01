@@ -7,7 +7,6 @@
 {% endblock %} {% block content %}
 
 <div class="container-fluid">
-  <!--Title-->
   <div class="row">
     <div class="col text-center mt-4">
       <h5 class="fw-bold text-uppercase">Product Management</h5>
@@ -17,13 +16,12 @@
   </div>
 </div>
 
+  <!--Edit product form-->
   <section class="h-100 gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-
         <div class=" col-md-8 card-header">
-
-          <form method="POST" action="{% url 'edit_product' product.id %}" class="" enctype="multipart/form-data">
+          <form method="POST" action="{% url 'edit_product' product.id %}" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
             <div class="text-right">
@@ -35,7 +33,6 @@
         </div>
       </div>
     </div>
-
 </section>
 
 {% endblock %}

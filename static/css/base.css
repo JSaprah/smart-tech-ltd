@@ -21,6 +21,11 @@ h2, h3{
     font-family: "Montserrat", sans-serif;
 }
 
+a{
+    text-transform: uppercase;
+    font-family: "Roboto", sans-serif;
+}
+
 h5, p{
     font-family: "Roboto", sans-serif;
 }

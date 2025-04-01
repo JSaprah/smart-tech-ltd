@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.contrib.auth.decorators import login_required
 from products.models import Product
 from .forms import ReviewForm
@@ -52,26 +52,3 @@ def delete_review(request, review_id):
         return redirect('product_detail', product_id=product_id)
 
     return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
-
-@login_required
-def edit_review(request, review_id):
-    # Retrieve the review
-    review = get_object_or_404(Review, id=review_id)
-
-    # Ensure the logged-in user is the author of the review
-    if review.author != request.user:
-        messages.error(request, 'You are not authorized to edit this review.')
-        return HttpResponseForbidden('You do not have permission to edit this review.')
-
-    if request.method == 'POST':
-        form = ReviewForm(request.POST, instance=review)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Your review has been updated successfully!')
-            return redirect('product_detail', product_id=review.product.id)
-    else:
-        form = ReviewForm(instance=review)
-
-    return render(
-        request, 'edit_review.html', {'form': form, 'product': review.product, 'review': review}
-    )

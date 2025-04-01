@@ -1,10 +1,15 @@
-{% extends "base.html" %} {% load static %} {% block page_header %}
+{% extends "base.html" %}
+{% load static %}
+{% block page_header %}
+
 <div class="container header-container mt-5">
   <div class="row">
     <div class="col"></div>
   </div>
 </div>
-{% endblock %} {% block content %}
+{% endblock %}
+
+{% block content %}
 
 <!--Product image-->
 <div class="container-fluid">
@@ -26,7 +31,6 @@
           src="{{ MEDIA_URL }}noimage.webp"
           alt="{{ product.name }}"
         />
-
         {% endif %}
       </div>
     </div>
@@ -34,9 +38,7 @@
     <!--Product details-->
     <div class="col-12 col-md-6 col-lg-4 ml-4 text-center text-md-left">
       <div class="product-details-container">
-        <p
-          class="text-uppercase text-dark bg-light text-center font-weight-bold"
-        >
+        <p class="text-uppercase text-dark bg-light text-center font-weight-bold">
           {{ product.name }}
         </p>
         <p class="font-weight-bold">£{{ product.price }}</p>
@@ -58,7 +60,7 @@
       </a>
 
       {% else %}
-      <i class="text-muted fa-solid fa-heart fa-lg"></i>
+      <i class="text-muted fa-solid fa-heart fa-lg" aria-label="Add to Wishlist"></i>
       <span class="text-muted"
         >Login to save this product to your wishlist</span
       >
@@ -82,6 +84,7 @@
                     class="substraction btn btn-warning px-3 me-2"
                     data-item_id="{{ product.id }}"
                     id="substraction_{{ product.id }}"
+                    aria-label="Decrease quantity"
                   >
                     <span class="icon">
                       <i class="fas fa-minus"></i>
@@ -103,6 +106,7 @@
                     class="addition btn btn-warning px-3 me-2"
                     data-item_id="{{ product.id }}"
                     id="addition_{{ product.id }}"
+                    aria-label="Increase quantity"
                   >
                     <span class="icon">
                       <i class="fas fa-plus"></i>
@@ -112,7 +116,6 @@
               </div>
             </div>
           </div>
-          <!--Quantity-->
 
           <div class="col-12">
             <!--Button Add to bag-->
@@ -155,74 +158,88 @@
     </div>
   </div>
 
-  <!--Product review form-->
-  <section class="h-100 gradient-custom">
-    <div class="container py-5 h-100">
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        
-          {% if reviews %} 
 
-          <div class="col-md-8 card-header text-light text-center">
-            {% for review in reviews %}
-    <div class="border border-light rounded mb-2">
-        <p>{{ review.author.username }}</p>
-        <p>{{ review.rating }}</p>
-        <p>{{ review.title }}</p>
-        <p>{{ review.content }}</p>
-        <p>{{ review.created_at }}</p>
+<!--Add review Modal-->
+{% if user.is_authenticated %}
+<button type="button" class="btn btn-success btn-lg float-right mr-5" data-toggle="modal" data-target="#addReviewModal">
+ <strong>Add review</strong>
+</button>
+{% else %}
+<p class="text-light text-center">You must be logged in to write a review</p>
+{% endif %}
 
-        {% if review.author == user %}
-        <form method="POST" action="{% url 'delete_review' review.id %}" style="display: inline;">
-            {% csrf_token %}
-            <button type="submit" class="btn btn-light"><strong>Delete review</strong></button>
-        </form>
-    {% endif %}
-    
-    </div>
-
-{% endfor %}
-
-        </div>
-          
-          {% else %}
-          <p>No reviews yet. Be the first one to review this product!</p>
-          {% endif %}
-        </div>
+<div class="modal fade" id="addReviewModal" tabindex="-1" role="dialog" aria-labelledby="addReviewModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content text-dark">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addReviewModalLabel">Add review</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <!--Form-->
+      <div class="modal-body">
 
-      <div class="row d-flex justify-content-center align-items-center h-100">
-        <div class="col-md-8 card-header">
-          <div class="card-header text-light">
-            {% if user.is_authenticated %}
-            <p class="text-light">Add review</p>
-            <form
+        <form
               method="POST"
               action="{% url 'add_review' product.id %}"
               class="form mb-2"
               enctype="multipart/form-data"
             >
               {% csrf_token %} {{ form | crispy }}
-              <div class="text-right">
-                <a
-                  class="btn btn-light rounded-0"
-                  href="{% url 'products' %}"
-                  >Cancel</a
-                >
-                <button class="btn btn-warning rounded-0" type="submit">
-                  Add Review
-                </button>
-              </div>
-            </form>
-            {% else %}
-            <p class="text-light text-center">You must be logged in to write a review</p>
-            {% endif %}
-          </div>
-        </div>
+
+              <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+              <button class="btn btn-success rounded-0" type="submit">
+                Add Review
+              </button>
+            </div>
+          </form>
+      </div>
       </div>
     </div>
-  </section>
+  </div>
 </div>
+
+
+
+
+<!--Reviews-->
+  <section class="text-dark">
+    <div class="container py-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-xl-8 text-center">
+          <h3 class="fw-bold mb-4 text-light">Reviews</h3>
+        </div>
+      </div>
+      <div class="row text-center">
+        {% if reviews %} 
+        {% for review in reviews %}
+        <div class="col mb-4 mb-md-0 w-25">
+          <div class="card">
+            <div class="card-body py-4 mt-2">
+              <h5 class="font-weight-bold">{{ review.rating }}</h5>
+              <h5 class="font-weight-bold">{{ review.author }}</h5>
+              <h5 class="font-weight-bold my-3">{{ review.title }}</h5>
+                         <p class="mb-2">
+                <i class="fas fa-quote-left pe-2"></i>{{ review.content }}
+              </p>
+              {% if review.author == user %}
+              <form method="POST" action="{% url 'delete_review' review.id %}" style="display: inline;">
+                  {% csrf_token %}
+                  <button type="submit" class="btn btn-danger"><strong>Delete review</strong></button>
+              </form>
+          {% endif %}
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="d-flex justify-content-center">
+      <p class="text-light text-center">No reviews yet! Be the first one to place a review..</p>
+    </div>
+    {% endif %}
+  </section>
 
 {% endblock %} 
 {% block postloadjs %} 
