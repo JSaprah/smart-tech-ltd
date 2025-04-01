@@ -97,8 +97,8 @@ class StripeWH_Handler:
             try:
                 print(f"Attempt {attempt}: Querying order...")
                 order = Order.objects.get(
-                    first_name__iexact=shipping_details.name,
-                    last_name__iexact=shipping_details.name,
+                    first_name__iexact=shipping_details["name"].split()[0],
+                    last_name__iexact=shipping_details["name"].split()[-1],
                     email__iexact=billing_details.email,
                     phone_number__iexact=shipping_details.phone,
                     country__iexact=shipping_details.address.country,
@@ -117,7 +117,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            self.send_confirmation_email(order)
+            self._send_confirmation_email(order)
             print('confirmation email send')
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: \
@@ -127,8 +127,8 @@ class StripeWH_Handler:
             order = None
             try:
                 order = Order.objects.create(
-                    first_name=shipping_details.name,
-                    last_name=shipping_details.name,
+                    first_name=shipping_details["name"].split()[0],
+                    last_name=shipping_details["name"].split()[-1],
                     user_profile=profile,
                     email=billing_details.email,
                     phone_number=shipping_details.phone,
