@@ -20,9 +20,9 @@
 <div class="container-fluid">
   <!--Title-->
   <div class="row">
-    <div class="col text-center mt-4">
+    <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
       <h1 class="fw-bold text-uppercase">Check out</h1>
-      <hr class="w-50 mb-4" />
+      <hr class="w-50 mb-4"/>
     </div>
   </div>
 
@@ -93,7 +93,6 @@
 							<span>Your card will be charged <strong>£{{ grand_total|floatformat:2 }}</strong></span>
 						</p>
 					</div>
-
                 </form>
             </div>
 
@@ -113,6 +112,7 @@
             <div class="row">
               <div class="col-lg-3 col-md-12 mb-4 mb-lg-0">
                 <!-- Image -->
+                {% if product.product.image %}
                 <div
                   class="bg-image hover-overlay hover-zoom ripple rounded"
                   data-mdb-ripple-color="light"
@@ -120,16 +120,25 @@
                   <img
                     src="{{ product.product.image.url }}"
                     class="w-100"
-                    alt="{{ product.name }}"
+                    alt="{{ product.product.name }}"
                   />
                   <a href="#!">
-                    <div
-                      class="mask"
-                      style="background-color: rgba(251, 251, 251, 0.2)"
-                    ></div>
                   </a>
                 </div>
               </div>
+              {% else %}
+
+              <div
+              class="bg-image hover-overlay hover-zoom ripple rounded"
+              data-mdb-ripple-color="light"
+            >
+            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
+              <a href="#!">
+              </a>
+            </div>
+          </div>
+            
+              {% endif %}
 
 
               <div class="col justify-content-center">

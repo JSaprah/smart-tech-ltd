@@ -11,20 +11,22 @@
 {% endblock %} 
 
 {% block content %}
-<div class="container-fluid large-container">
-  <div class="row">
-      <div class="col text-center mt-3">
-          <h1 class="hero-font text-uppercase">Products</h1>
-          <hr class="w-50 mb-3">
+  <!--Title-->
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
+        <h2 class="fw-bold text-uppercase text-center">Products</h2>
+        <hr class="w-50 mb-4" />
       </div>
+    </div>
   </div>
-  </div>
+
   <!-- Sorting Selector -->
   <div class="product-container col-10 offset-1">
       <div class="row">
           <div class="col-12 col-md-6 my-auto order-md-last d-flex justify-content-center justify-content-md-end">
               <div class="sort-select-wrapper w-50">
-                <select id="sort-selector" class="custom-select custom-select-sm border border-{% if current_sorting != 'None_None' %}warning{% else %}black{% endif %}">
+                <select id="sort-selector" class="custom-select custom-select-sm border border-{% if current_sorting != 'None_None' %}warning{% else %}black{% endif %}" aria-label="Sort products by criteria">
                   <option value="reset" {% if current_sorting == 'None_None' %}selected{% endif %}>Sort by...</option>
                   <option value="price_asc" {% if current_sorting == 'price_asc' %}selected{% endif %}>Price (low to high)</option>
                   <option value="price_desc" {% if current_sorting == 'price_desc' %}selected{% endif %}>Price (high to low)</option>
@@ -40,7 +42,7 @@
           <div class="col-12 col-md-6 order-md-first">
               <p class="text-muted mt-3 text-center text-md-left">
                   {% if search_term or current_categories or current_sorting != 'None_None' %}
-                      <span class="small font-weight-bold"><a class="text-warning" href="{% url 'products' %}">All Products</a> | </span>
+                      <span class="small font-weight-bold"><a class="text-warning" href="{% url 'products' %}" aria-label="View all products without filters or search terms applied">All Products</a> | </span>
                   {% endif %}
                   {{ products|length }} Products{% if search_term %} found for <strong>"{{ search_term }}"</strong>{% endif %}
               </p>

@@ -6,23 +6,21 @@
 </div>
 {% endblock %} {% block content %}
 
-<div class="container-fluid">
   <!--Title-->
-  <div class="row">
-    <div class="col text-center mt-4">
-      <h5 class="fw-bold text-uppercase">Product Management</h5>
-      <h5 class="text-muted">Add Product</h5>
-      <hr class="w-50 mb-4" />
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
+        <h2 class="fw-bold text-uppercase text-center">Add product</h2>
+        <hr class="w-50 mb-4" />
+      </div>
     </div>
   </div>
-</div>
 
+  <!--Add product-->
   <section class="h-100 gradient-custom">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
-
         <div class=" col-md-8 card-header">
-
           <form method="POST" action="{% url 'add_product' %}" class="" enctype="multipart/form-data">
             {% csrf_token %}
             {{ form | crispy }}
@@ -34,8 +32,6 @@
         </div>
       </div>
     </div>
-
-
 </section>
 
 {% endblock %}
