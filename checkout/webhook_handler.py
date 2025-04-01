@@ -26,7 +26,7 @@ class StripeWH_Handler:
             content=f'Unhandled webhook received: {event["type"]}',
             status=200)
 
-    def _send_confirmation_email(self, order):
+    def send_confirmation_email(self, order):
         """Send the user a confirmation email"""
 
         print('Trigger send confirmation email')
@@ -117,7 +117,7 @@ class StripeWH_Handler:
                 attempt += 1
                 time.sleep(1)
         if order_exists:
-            self._send_confirmation_email(order)
+            self.send_confirmation_email(order)
             print('confirmation email send')
             return HttpResponse(
                 content=f'Webhook received: {event["type"]} | SUCCESS: \
@@ -156,7 +156,7 @@ class StripeWH_Handler:
                 return HttpResponse(
                     content=f'Webhook received: {event["type"]} | ERROR: {e}',
                     status=500) 
-        self.send_confirmation_email(order)
+        self._send_confirmation_email(order)
         print('confirmation email send')
 
         return HttpResponse(
