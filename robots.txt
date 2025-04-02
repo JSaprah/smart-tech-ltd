@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /accounts/
+Disallow: /bag/
+Sitemap:https://smart-tech-ltd-89566b21efa9.herokuapp.com/sitemap.xml
