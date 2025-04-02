@@ -1,25 +1,16 @@
 {% extends "base.html" %}
-
 {% load static %}
 
 {% block page_header %}
-
 <div class="container header-container mt-5">
-
   <div class="row">
-
     <div class="col"></div>
-
   </div>
-
 </div>
-
 {% endblock %}
 
 
-
 {% block content %}
-
   <!--Title-->
   <div class="container-fluid">
     <div class="row">
@@ -29,118 +20,61 @@
       </div>
     </div>
   </div>
-
+  
 <!--Product image-->
 
 <div class="container-fluid">
 
-  <div class="row justify-content-center align-items-center">
+  <section class="row justify-content-center align-items-center">
 
     <div class="col-12 col-sm-10 col-md-6 col-lg-4">
-
-      <div class="image-container my-5">
+      <figure class="image-container my-5">
 
         {% if product.image %}
-
         <a href="{{ product.image.url }}" target="_blank">
-
-          <img
-
-            class="card-img-top img-fluid"
-
-            src="{{ product.image.url }}"
-
-            alt="{{ product.name }}"
-
-          />
-
+          <img class="card-img-top img-fluid" src="{{ product.image.url }}" alt="{{ product.name }}"/>
         </a>
 
         {% else %}
-
-        <img
-
-          class="card-img-top img-fluid"
-
-          src="{{ MEDIA_URL }}noimage.webp"
-
-          alt="{{ product.name }}"
-
-        />
-
+        <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.name }}"/>
         {% endif %}
-
-      </div>
-
+      </figure>
     </div>
 
-
-
     <!--Product details-->
-
     <div class="col-12 col-sm-10 col-md-6 col-lg-4 text-center text-md-left">
 
       <div class="product-details-container">
-
         <p class="text-uppercase text-dark bg-light text-center font-weight-bold">
-
           {{ product.name }}
-
         </p>
-
         <p class="font-weight-bold">£{{ product.price }}</p>
-
         <p>{{ product.description }}</p>
-
       </div>
 
-
-
       <!--Wishlist-->
-
       {% if user.is_authenticated %}
 
-      <a
-
-        href="{% url 'add_to_wishlist' product.id %}"
-
-        class="text-light font-weight-bold"
-
-      >
+      <a href="{% url 'add_to_wishlist' product.id %}" class="text-light font-weight-bold">
 
         <div>
-
           <i class="fa-solid fa-heart fa-2x heart-icon {% if in_wishlist %}added{% else %}not-added{% endif %}"></i>
-
         </div>
-
       </a>
 
       {% else %}
 
-      <i class="text-muted fa-solid fa-heart fa-lg" aria-label="Add to Wishlist"></i>
-
-      <span class="text-muted"
-
-        >Login to save this product to your wishlist</span
-
-      >
+      <i class="text-muted fa-solid fa-heart fa-lg" aria-label="Add to Wishlist"></i> 
+      <span class="text-muted">Login to save this product to your wishlist</span>
 
       {% endif %}
-
-
 
       <!--Add to bag form-->
 
       <form
-
         class="form"
-
         action="{% url 'add_product_to_bag' product.id %}"
-
-        method="POST"
-
-      >
+        method="POST">
 
         {% csrf_token %}
 
@@ -148,7 +82,7 @@
 
           <!--Quantity-->
 
-          <div class="col-12">
+          <div class="col-md-6">
 
             <p class="mt-3"><strong>Quantity:</strong></p>
 
@@ -306,16 +240,15 @@
 
     </div>
 
-  </div>
+  </section>
 
-
-<!--Add review Modal-->
+<!--Reviews-->
   <div class="row d-flex justify-content-center">
     <div class="col-md-10 col-xl-8 text-center">
       <h3 class="fw-bold mb-4 text-light">Reviews</h3>
     </div>
 
-    <div class="col-md-10 col-xl-8 text-center">
+  <div class="col-md-10 col-xl-8 text-center">
 {% if user.is_authenticated %}
 <button type="button" class="btn btn-light btn-lg" data-toggle="modal" data-target="#addReviewModal">
  <strong>Add review</strong>
@@ -358,38 +291,41 @@
 </div>
 
 <!--Reviews-->
-  <section class="text-dark">
-    <div class="container py-5">
-      <div class="row text-center justify-content-center">
-        {% if reviews %} 
-        {% for review in reviews %}
-        <div class="col-md-4 col-sm-12 mb-4 mb-md-0 w-25">
-          <div class="card">
-            <div class="card-body py-4 mt-2">
-              <h5 class="font-weight-bold">{{ review.rating }}</h5>
-              <h5 class="font-weight-bold">{{ review.author }}</h5>
-              <h5 class="font-weight-bold my-3">{{ review.title }}</h5>
-                         <p class="mb-2">
-                <i class="fas fa-quote-left pe-2"></i>{{ review.content }}
-              </p>
-              {% if review.author == user %}
-              <form method="POST" action="{% url 'delete_review' review.id %}" style="display: inline;">
-                  {% csrf_token %}
-                  <button type="submit" class="btn btn-danger"><strong>Delete review</strong></button>
-              </form>
-          {% endif %}
-            </div>
+<section class="text-dark">
+  <div class="container py-5">
+    <div class="row text-center justify-content-center">
+      {% if reviews %}
+      {% for review in reviews %}
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card">
+          <div class="card-body py-4 mt-2">
+            <h5 class="font-weight-bold">{{ review.rating }}</h5>
+            <h5 class="font-weight-bold">{{ review.author }}</h5>
+            <h5 class="font-weight-bold my-3">{{ review.title }}</h5>
+            <p class="mb-2">
+              <i class="fas fa-quote-left pe-2"></i>{{ review.content }}
+            </p>
+            {% if review.author == user %}
+            <form method="POST" action="{% url 'delete_review' review.id %}" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger"><strong>Delete review</strong></button>
+            </form>
+            {% endif %}
           </div>
         </div>
-        {% endfor %}
+      </div>
+      {% endfor %}
+      {% else %}
+      <div class="d-flex justify-content-center">
+        <p class="text-light text-center">No reviews yet! Be the first one to place a review..</p>
+      </div>
+      {% endif %}
     </div>
-    {% else %}
-    <div class="d-flex justify-content-center">
-      <p class="text-light text-center">No reviews yet! Be the first one to place a review..</p>
-    </div>
-    {% endif %}
-  </section>
+  </div>
+</section>
 
+  </div>
+</div>
 {% endblock %} 
 {% block postloadjs %} 
 {{ block.super }} 
