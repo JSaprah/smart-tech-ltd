@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, reverse, get_object_or_404, \
 from django.views.decorators.http import require_POST
 from django.contrib import messages
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 from .forms import OrderForm
 from .models import Order, OrderLineItem
@@ -138,6 +139,7 @@ def checkout(request):
         return render(request, template, context)
 
 
+@login_required
 def checkout_success(request, order_number):
     """
     Handle successful checkouts
