@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
         <h2 class="fw-bold text-uppercase text-center">Contact</h2>
-        <hr class="w-50 mb-4" />
+        <hr class="w-50 mb-4" aria-hidden="true" />
       </div>
     </div>
   </div>
@@ -28,10 +28,12 @@
             {{form|crispy}}
     
             <div class="text-center">
-                <a href="{% url 'products' %}" class="btn btn-lg btn-dark" aria-label="back to the products page">
+                <a href="{% url 'products' %}" class="btn btn-lg btn-dark" aria-label="Back to the products page">
                     Cancel
                 </a>
-                <button type="submit" class="btn btn-lg btn-warning">Send</button>
+                <button type="submit" class="btn btn-lg btn-warning" aria-label="Send the contact form">
+                    Send
+                </button>
             </div>
     
         </form>
@@ -42,4 +44,3 @@
 </div>
 
     {% endblock %}
-

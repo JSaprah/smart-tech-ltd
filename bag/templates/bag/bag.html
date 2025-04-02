@@ -11,11 +11,11 @@
 {% endblock %} {% block content %}
 
 <div class="container-fluid">
-  <!--Title-->
+  <!-- Title -->
   <div class="row">
     <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
       <h2 class="fw-bold text-uppercase">Shopping bag</h2>
-      <hr class="w-50 mb-4"/>
+      <hr class="w-50 mb-4" />
     </div>
   </div>
 
@@ -23,7 +23,7 @@
   <div class="container h-100">
     <div class="row d-flex justify-content-center my-4 text-dark">
 
-      <!--Shopping bag count-->
+      <!-- Shopping Bag Count -->
       <div class="col-md-8">
         <div class="card mb-4">
           <div class="card-header py-3">
@@ -38,33 +38,27 @@
 
                 <!-- Image -->
                 {% if product.product.image %}
-                <div
-                  class="bg-image hover-overlay hover-zoom ripple rounded"
-                  data-mdb-ripple-color="light"
-                >
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
                   <img
                     src="{{ product.product.image.url }}"
                     class="w-100"
                     alt="{{ product.product.name }}"
+                    aria-label="Image of {{ product.product.name }}"
                   />
-                  <a href="#!">
-                  </a>
                 </div>
+                {% else %}
+                <div class="bg-image hover-overlay hover-zoom ripple rounded" data-mdb-ripple-color="light">
+                  <img
+                    class="img-fluid rounded"
+                    src="{{ MEDIA_URL }}noimage.webp"
+                    alt="No image available for {{ product.product.name }}"
+                    aria-label="Placeholder image for {{ product.product.name }}"
+                  />
+                </div>
+                {% endif %}
               </div>
-              {% else %}
 
-              <div
-              class="bg-image hover-overlay hover-zoom ripple rounded"
-              data-mdb-ripple-color="light"
-            >
-            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
-              <a href="#!">
-              </a>
-            </div>
-          </div>
-            
-              {% endif %}
-              <!-- Product details -->
+              <!-- Product Details -->
               <div class="col-lg-5 col-md-6 mb-4 mb-lg-0">
                 <p><strong>{{ product.product.name }}</strong></p>
                 <p>{{ product.product.description }}</p>
@@ -73,83 +67,99 @@
               <!-- Quantity -->
               <form class="form update-form" method="POST" action="{% url 'update_bag' product.product_id %}">
                 {% csrf_token %}
-              <div class="col justify-content-center">
-                <div class="d-flex mb-4" style="max-width: 300px">
+                <div class="col justify-content-center">
+                  <div class="d-flex mb-4" style="max-width: 300px">
                     <div class="input-group">
-                        <div class="input-group-prepend">
-                            <button class="substraction btn btn-warning px-3 me-2"
-                                data-item_id="{{ product.product_id }}" id="substraction_{{ product.product_id }}">
-                                <span class="icon">
-                                    <i class="fas fa-minus"></i>
-                                </span>
-                            </button>
-                        </div>
-                        <input class="form-control quantity_input" type="number" name="quantity" value="{{ product.quantity }}"
-                            min="1" max="99" data-item_id="{{ product.product_id }}" id="id_quantity_{{ product.product_id }}">
-                        <div class="input-group-append">
-                            <button class="addition btn btn-warning px-3 me-2"
-                                data-item_id="{{ product.product_id }}" id="addition_{{ product.product_id }}">
-                                <span class="icon">
-                                    <i class="fas fa-plus"></i>
-                                </span>
-                            </button>
-                        </div>
+                      <div class="input-group-prepend">
+                        <button
+                          class="substraction btn btn-warning px-3 me-2"
+                          data-item_id="{{ product.product_id }}"
+                          id="substraction_{{ product.product_id }}"
+                          aria-label="Decrease quantity of {{ product.product.name }}"
+                        >
+                          <span class="icon">
+                            <i class="fas fa-minus"></i>
+                          </span>
+                        </button>
+                      </div>
+                      <input
+                        class="form-control quantity_input"
+                        type="number"
+                        name="quantity"
+                        value="{{ product.quantity }}"
+                        min="1"
+                        max="99"
+                        data-item_id="{{ product.product_id }}"
+                        id="id_quantity_{{ product.product_id }}"
+                        aria-label="Quantity input for {{ product.product.name }}"
+                      />
+                      <div class="input-group-append">
+                        <button
+                          class="addition btn btn-warning px-3 me-2"
+                          data-item_id="{{ product.product_id }}"
+                          id="addition_{{ product.product_id }}"
+                          aria-label="Increase quantity of {{ product.product.name }}"
+                        >
+                          <span class="icon">
+                            <i class="fas fa-plus"></i>
+                          </span>
+                        </button>
+                      </div>
                     </div>
-                </div>
+                  </div>
                 </form>
 
-                <!--Update and remove button-->
-                <button type="button" class="update-link btn btn-success btn-sm me-1 mb-2">
-                <i class="fa-solid fa-sync"></i>
-              </button>
-              <button type="button" class="btn btn-danger btn-sm mb-2 remove-product" id="remove_{{ product.product_id }}">
-                <i class="fa-solid fa-trash"></i>
-              </button>
-              
+                <!-- Update and Remove Buttons -->
+                <button
+                  type="button"
+                  class="update-link btn btn-success btn-sm me-1 mb-2"
+                  aria-label="Update {{ product.product.name }} in shopping bag"
+                >
+                  <i class="fa-solid fa-sync"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger btn-sm mb-2 remove-product"
+                  id="remove_{{ product.product_id }}"
+                  aria-label="Remove {{ product.product.name }} from shopping bag"
+                >
+                  <i class="fa-solid fa-trash"></i>
+                </button>
+
                 <!-- Price -->
                 <p class="text-start text-md-center">
-                  <strong> price: £ {{ product.product.price }}</strong>
+                  <strong>Price: £ {{ product.product.price }}</strong>
                 </p>
                 <p class="text-start text-md-center">
-                    <strong> subtotal: £ {{ product.product.price | calc_subtotal:product.quantity }}</strong>
-                  </p>
+                  <strong>Subtotal: £ {{ product.product.price | calc_subtotal:product.quantity }}</strong>
+                </p>
               </div>
             </div>
           </div>
-
           {% endfor %}
         </div>
-
       </div>
+
+      <!-- Summary -->
       <div class="col-md-4">
-        <!--Summary-->
         <div class="card mb-4">
           <div class="card-header py-3">
             <h5 class="mb-0">Summary</h5>
           </div>
           <div class="card-body">
             <ul class="list-group list-group-flush">
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0"
-              >
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 pb-0">
                 Products
-                <span>£ {{ total| floatformat:2 }}</span>
+                <span>£ {{ total|floatformat:2 }}</span>
               </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center px-0"
-              >
+              <li class="list-group-item d-flex justify-content-between align-items-center px-0">
                 Shipping
                 <span>{{ delivery | floatformat:2 }}</span>
               </li>
-              <li
-                class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3"
-              >
+              <li class="list-group-item d-flex justify-content-between align-items-center border-0 px-0 mb-3">
                 <div>
-                  <!--Total amount-->
                   <strong>Total amount</strong>
-                  <strong>
-                    <p class="mb-0">(including VAT)</p>
-                  </strong>
+                  <p class="mb-0">(including VAT)</p>
                 </div>
                 <span><strong>£ {{ grand_total | floatformat:2 }}</strong></span>
               </li>
@@ -158,6 +168,7 @@
             <a
               href="{% url 'products' %}"
               class="btn btn-warning rounded-0 btn-lg btn-block"
+              aria-label="Continue shopping"
             >
               <span class="icon">
                 <i class="fas fa-arrow-left"></i>
@@ -165,7 +176,11 @@
               <span class="text-uppercase">Keep Shopping</span>
             </a>
 
-            <a href="{% url 'checkout' %}" class="btn btn-dark rounded-0 btn-lg btn-block">
+            <a
+              href="{% url 'checkout' %}"
+              class="btn btn-dark rounded-0 btn-lg btn-block"
+              aria-label="Proceed to secure checkout"
+            >
               <span class="icon">
                 <i class="fas fa-lock"></i>
               </span>
@@ -178,14 +193,15 @@
   </div>
 
   {% else %}
+  <!-- Empty Bag -->
   <div class="container-fluid">
-    <!--Title-->
     <div class="row">
       <div class="col text-center mt-4">
-        <p class="mb-5 text-uppercase">Your bag is empty..</p>
+        <p class="mb-5 text-uppercase">Your bag is empty...</p>
         <a
           href="{% url 'products' %}"
           class="btn rounded-0 btn-lg text-warning mb-4"
+          aria-label="Continue shopping as your bag is empty"
         >
           <span class="icon">
             <i class="fas fa-chevron-left"></i>
@@ -194,9 +210,10 @@
         </a>
       </div>
     </div>
-    {% endif %}
+  {% endif %}
   </div>
 </div>
+
     {% endblock %}
 
 

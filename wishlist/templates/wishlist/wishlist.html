@@ -11,7 +11,7 @@
     <div class="row">
       <div class="col d-flex justify-content-center flex-column align-items-center mt-4">
         <h2 class="fw-bold text-uppercase text-center">Wishlist</h2>
-        <hr class="w-50 mb-4" />
+        <hr class="w-50 mb-4" aria-hidden="true" />
       </div>
     </div>
   </div>
@@ -31,14 +31,13 @@
                 <div
                   class="bg-image hover-overlay hover-zoom ripple rounded"
                   data-mdb-ripple-color="light"
+                  aria-label="Image for product {{ product.product.name }}"
                 >
                   <img
                     src="{{ product.product.image.url }}"
                     class="w-100"
                     alt="{{ product.product.name }}"
                   />
-                  <a href="#!">
-                  </a>
                 </div>
               </div>
               {% else %}
@@ -46,30 +45,29 @@
               <div
               class="bg-image hover-overlay hover-zoom ripple rounded"
               data-mdb-ripple-color="light"
+              aria-label="No image available container for product {{ product.product.name }}"
             >
-            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.webp" alt="{{ item.product.name }}">
-              <a href="#!">
-              </a>
+            <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.webp" alt="{{ product.product.name }}">
             </div>
           </div>
 {% endif %}
           <!-- Product details -->
           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            <p class="bg-light"><strong>{{ product.product.name }}</strong></p>
-            <p><strong>£{{ product.product.price }}</strong></p>
-            <p>{{ product.product.description }}</p>
+            <p class="bg-light" aria-label="Product name is {{ product.product.name }}"><strong>{{ product.product.name }}</strong></p>
+            <p aria-label="Product price is £{{ product.product.price }}"><strong>£{{ product.product.price }}</strong></p>
+            <p aria-label="Product description: {{ product.product.description }}">{{ product.product.description }}</p>
           </div>
 
         <!--Go to details page and remove button-->
         <div class="col-lg-3 col-md-6 mb-4 mb-lg-0">
 
-          <a href="{% url 'product_detail' product.product.id %}" class="btn btn-success me-1 mb-2 col-12">
+          <a href="{% url 'product_detail' product.product.id %}" class="btn btn-success me-1 mb-2 col-12" aria-label="Go to product details for {{ product.product.name }}">
             <div>
               <i class="fa-solid fa-bag-shopping"></i><span class="ml-2">Go to product</span>
             </div>
           </a>
 
-          <a href="{% url 'remove_from_wishlist' product.product_id %}" class="btn btn-danger me-1 mb-2 col-12">
+          <a href="{% url 'remove_from_wishlist' product.product_id %}" class="btn btn-danger me-1 mb-2 col-12" aria-label="Remove {{ product.product.name }} from wishlist">
             <div>
               <i class="fa-solid fa-trash"></i><span class="ml-2">Remove from wishlist</span>
             </div>
@@ -85,10 +83,11 @@
         <!--Title-->
         <div class="row">
           <div class="col text-center mt-4">
-            <p class="mb-5 text-uppercase">Your wishlist is empty..</p>
+            <p class="mb-5 text-uppercase" aria-label="Notification: Your wishlist is empty">Your wishlist is empty..</p>
             <a
               href="{% url 'products' %}"
               class="btn rounded-0 btn-lg text-warning mb-4"
+              aria-label="Go back to product listing"
             >
               <span class="icon">
                 <i class="fas fa-chevron-left"></i>
@@ -106,4 +105,3 @@
 </div>
 
     {% endblock %}
-

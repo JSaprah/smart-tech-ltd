@@ -21,14 +21,21 @@
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class=" col-md-8 card-header">
-          <form method="POST" action="{% url 'add_product' %}" class="" enctype="multipart/form-data">
+
+          <form method="POST" action="{% url 'add_product' %}" class="add-product-form" enctype="multipart/form-data" aria-label="Add Product Form">
             {% csrf_token %}
             {{ form | crispy }}
             <div class="text-right">
-                <a class="btn btn-light" href="{% url 'products' %}"><strong>Cancel</strong></a>
-                <button class="btn btn-warning" type="submit"><strong>Add Product</strong></button>
+                <a class="btn btn-light" href="{% url 'products' %}" aria-label="Cancel and return to product list">
+                    <strong>Cancel</strong>
+                </a>
+                <button class="btn btn-warning" type="submit" aria-label="Add Product to inventory">
+                    <strong>Add Product</strong>
+                </button>
             </div>
         </form>
+        
+
         </div>
       </div>
     </div>
