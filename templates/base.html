@@ -95,9 +95,8 @@
       <div class="row">
         <!--Home logo-->
         <div
-          class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left"
-        >
-          <a href="{% url 'home' %}" class="nav-link main-logo-link">
+          class="col-12 col-lg-4 my-auto py-1 py-lg-0 text-center text-lg-left">
+          <a href="{% url 'home' %}" class="nav-link main-logo-link" aria-label="Smart Tech Homepage">
             <h1 class="logo-font text-warning my-0 text-uppercase">
               <strong>Smart Tech</strong>
             </h1>
@@ -108,16 +107,17 @@
         <div class="col-12 col-lg-4 my-auto py-1 py-lg-0 d-none d-lg-flex">
           <form method="GET" action="{% url 'products' %}" class="w-100">
             <div class="input-group">
+              <label for="search-input" class="sr-only">Search for products</label>
               <input
                 class="form-control rounded-0"
                 type="text"
                 name="q"
-                placeholder="Search for products"
+                placeholder="Search for products" aria-label="Search for products"
               />
               <div class="input-group-append">
                 <button
                   class="form-control btn btn-warning rounded-0"
-                  type="submit"
+                  type="submit" aria-label="Submit search"
                 >
                   <span class="icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
@@ -140,6 +140,7 @@
                 data-toggle="dropdown"
                 aria-haspopup="true"
                 aria-expanded="false"
+                aria-label="My Account Menu"
               >
                 <div class="text-center">
                   <div><i class="fa-solid fa-user fa-lg"></i></div>
@@ -150,8 +151,8 @@
                 class="dropdown-menu border-0 bg-light"
                 aria-labelledby="user-options"
               >
-                {% if request.user.is_authenticated %} {% if
-                request.user.is_superuser %}
+                {% if request.user.is_authenticated %} 
+                {% if request.user.is_superuser %}
 
                 <a href="{% url 'add_product' %}" class="dropdown-item"
                   >Product Management</a
@@ -217,8 +218,8 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          {% include 'includes/mobile-top-header.html' %} {% include
-          'includes/main-nav.html' %}
+          {% include 'includes/mobile-top-header.html' %}
+          {% include 'includes/main-nav.html' %}
         </nav>
       </div>
     </header>
@@ -226,11 +227,13 @@
     <!--Messages-->
     {% if messages %}
     <div class="message-container">
-      {% for message in messages %} {% with message.level as level %} {% if
-      level == 40 %} {% include 'includes/toasts/toast_error.html' %} {% elif
-      level == 30 %} {% include 'includes/toasts/toast_warning.html' %} {% elif
-      level == 25 %} {% include 'includes/toasts/toast_success.html' %} {% else
-      %} {% include 'includes/toasts/toast_info.html' %} {% endif %} {%endwith%}
+      {% for message in messages %} {% with message.level as level %} 
+      {% if level == 40 %}
+      {% include 'includes/toasts/toast_error.html' %} 
+      {% elif level == 30 %} {% include 'includes/toasts/toast_warning.html' %}
+      {% elif level == 25 %} {% include 'includes/toasts/toast_success.html' %}
+      {% else%}
+      {% include 'includes/toasts/toast_info.html' %} {% endif %} {%endwith%}
       {% endfor %}
     </div>
     {% endif %}
