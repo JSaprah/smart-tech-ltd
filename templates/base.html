@@ -1,60 +1,93 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     {% block meta %}
-    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
-    {% endblock %} 
-
-    {% block extra_meta %} 
-    {% endblock %} 
-
-    {% block corecss %}
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    {% endblock %} {% block extra_meta %} {% endblock %} {% block corecss %}
     <!--Bootstrap-->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous"/>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
 
     <!--CSS-->
-    <link rel="stylesheet" href="{% static 'css/base.css' %}"/>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}" />
 
     <!--Google Fonts-->
-    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400..700;1,400..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap"
+      rel="stylesheet"
+    />
 
     <!--Mailchimp-->
-    <link href="//cdn-images.mailchimp.com/embedcode/classic-061523.css" rel="stylesheet" type="text/css"/>
-    {% endblock %} 
-    
-    {% block extra_css %}
-    {% endblock %}
-    
-    {% block corejs %}
+    <link
+      href="//cdn-images.mailchimp.com/embedcode/classic-061523.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    {% endblock %} {% block extra_css %} {% endblock %} {% block corejs %}
     <!--FontAwesome-->
-    <script src="https://kit.fontawesome.com/1940912b0a.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/1940912b0a.js"
+      crossorigin="anonymous"
+    ></script>
 
     <!--Bootstrap JS-->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.4.1.min.js"
+      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+      integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+      integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- Stripe -->
     <script src="https://js.stripe.com/v3/"></script>
 
-    {% endblock %}
+    {% endblock %} {% block extra_js %} {% endblock %}
 
-    {% block extra_js %}
-    {% endblock %}
-
-    <link rel="icon" type="image/png" href="https://89566b21efa9-smart-tech-ltd.s3.eu-north-1.amazonaws.com/media/s+logo.PNG">
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://89566b21efa9-smart-tech-ltd.s3.eu-north-1.amazonaws.com/media/s+logo.PNG"
+    />
     <title>Smart Tech {% block extra_title %}{% endblock %}</title>
 
     <!--Meta tags-->
-    <meta name="description" content="Welcome to Smart Tech, the hub for cutting-edge gadgets, stylish accessories, and thrilling games. Discover tech and gaming essentials tailored to elevate your experience—shop now!"/>
-    <meta name="keywords" content="tech, gadgets, accessories, gaming, innovation, headset, audio, charging, wireless, trending"/>
-  
+    <meta
+      name="description"
+      content="Welcome to Smart Tech, the hub for cutting-edge gadgets, stylish accessories, and thrilling games. Discover tech and gaming essentials tailored to elevate your experience—shop now!"
+    />
+    <meta
+      name="keywords"
+      content="Must-have tech gadgets, Online marketplace, Latest tech gear, Ecommerce platforms, Compact smart devices,
+      Fast shipping, Unique wearable tech, Buy online now, Innovative gadgets for home, Personalised shopping experience,
+      Trending gadgets, Online shopping deals, Wireless headphones, Noise-cancelling headsets, Gaming headsets,
+      Best buy wireless headphones for sports, Bluetooth in-ear headphones with noise cancellation,
+      Surround sound gaming headsets for competitive play, USB-C charging cables, Fast charging cables, Lightning cables,
+      Universal magnetic charging cables for multi-device use, Braided USB-C cables with fast charging capabilities,
+      Durable iPhone lightning cables for daily use, Gaming consoles, Gaming accessories, Virtual reality gaming,
+      Exclusive multiplayer gaming, Best games for family-friendly fun, Trending games to play at home"
+    />
+    
   </head>
 
   <body class="d-flex flex-column min-vh-100">
@@ -79,11 +112,13 @@
                 class="form-control rounded-0"
                 type="text"
                 name="q"
-                placeholder="Search for products"/>
+                placeholder="Search for products"
+              />
               <div class="input-group-append">
                 <button
                   class="form-control btn btn-warning rounded-0"
-                  type="submit">
+                  type="submit"
+                >
                   <span class="icon">
                     <i class="fa-solid fa-magnifying-glass"></i>
                   </span>
@@ -115,8 +150,8 @@
                 class="dropdown-menu border-0 bg-light"
                 aria-labelledby="user-options"
               >
-                {% if request.user.is_authenticated %} 
-                {% if request.user.is_superuser %}
+                {% if request.user.is_authenticated %} {% if
+                request.user.is_superuser %}
 
                 <a href="{% url 'add_product' %}" class="dropdown-item"
                   >Product Management</a
@@ -182,8 +217,8 @@
           >
             <span class="navbar-toggler-icon"></span>
           </button>
-          {% include 'includes/mobile-top-header.html' %} 
-          {% include 'includes/main-nav.html' %}
+          {% include 'includes/mobile-top-header.html' %} {% include
+          'includes/main-nav.html' %}
         </nav>
       </div>
     </header>
@@ -191,12 +226,11 @@
     <!--Messages-->
     {% if messages %}
     <div class="message-container">
-      {% for message in messages %} {% with message.level as level %} 
-      {% if level == 40 %} {% include 'includes/toasts/toast_error.html' %} 
-      {% elif level == 30 %} {% include 'includes/toasts/toast_warning.html' %} 
-      {% elif level == 25 %} {% include 'includes/toasts/toast_success.html' %} 
-      {% else %} {% include 'includes/toasts/toast_info.html' %} {% endif %} 
-      {%endwith%} 
+      {% for message in messages %} {% with message.level as level %} {% if
+      level == 40 %} {% include 'includes/toasts/toast_error.html' %} {% elif
+      level == 30 %} {% include 'includes/toasts/toast_warning.html' %} {% elif
+      level == 25 %} {% include 'includes/toasts/toast_success.html' %} {% else
+      %} {% include 'includes/toasts/toast_info.html' %} {% endif %} {%endwith%}
       {% endfor %}
     </div>
     {% endif %}
@@ -217,10 +251,15 @@
         <div class="col-lg-6">
           <h3>Social</h3>
           <p>Keep up to date with all our latest offers</p>
-          <a href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61575026153772" aria-label="Check out our facebook page" rel="noopener nofollow" target="_blank">
-            <i class="fa-brands fa-square-facebook fa-lg text-light"></i>
+          <a
+            href="https://www.facebook.com/profile.php?viewas=100000686899395&id=61575026153772"
+            aria-label="Check out our facebook page"
+            rel="noopener nofollow"
+            target="_blank"
+          >
+            <i class="fa-brands fa-square-facebook fa-2x text-light"></i>
             <span class="sr-only">Facebook</span>
-        </a>
+          </a>
         </div>
 
         <!--Mailchimp-->
@@ -290,9 +329,18 @@
                       value="Subscribe"
                     />
                     <p style="margin: 0px auto">
-                      <a href="http://eepurl.com/jboJLM" title="Mailchimp - email marketing made easy and fun"><span
-                          style="display: inline-block; background-color: transparent; border-radius: 4px;">
-                          <img class="refferal_badge"
+                      <a
+                        href="http://eepurl.com/jboJLM"
+                        title="Mailchimp - email marketing made easy and fun"
+                        ><span
+                          style="
+                            display: inline-block;
+                            background-color: transparent;
+                            border-radius: 4px;
+                          "
+                        >
+                          <img
+                            class="refferal_badge"
                             src="https://digitalasset.intuit.com/render/content/dam/intuit/mc-fe/en_us/images/intuit-mc-rewards-text-dark.svg"
                             alt="Intuit Mailchimp"
                             style="
@@ -302,7 +350,7 @@
                               padding: 2px 0px;
                               justify-content: center;
                               align-items: center;
-                            "/></span
+                            " /></span
                       ></a>
                     </p>
                   </div>
@@ -328,8 +376,10 @@
       $(".toast").toast("show");
       console.log("add to bag clicked");
     </script>
-    <script type="text/javascript"
-      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"></script>
+    <script
+      type="text/javascript"
+      src="//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js"
+    ></script>
     <script type="text/javascript">
       (function ($) {
         window.fnames = new Array();
