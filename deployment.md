@@ -303,3 +303,27 @@ What happens now is when our project is deployed to Heroku. Heroku will run pyth
 Which will search through all our apps and project folders looking for static files.And it will use the s3 custom domain setting here
 in conjunction with our custom storage classes that tell it the location at that URL.Where we'd like to save things.
 So in effect when the USE_AWS setting is true. Whenever collectstatic is run. Static files will be collected into a static folder in our s3 bucket. The beauty of this is that it's all automatic.
+
+
+## Caching, media files and Stripe
+
+### Caching
+1. Add optional setting in settings.py, named: AWS_S3_OBJECT_PARAMETERS. 
+
+if 'USE_AWS' in os.environ:
+    # Cache control
+    AWS_S3_OBJECT_PARAMETERS = {
+        'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
+        'CacheControl': 'max-age=94608000',
+    }
+
+This will tell the browser that it's okay to cache static files for a long time. since they don't change very often, and this will improve performance for our users.
+
+2. Push the changes
+
+### Media files
+
+1. Create file 'Media' in AWS S3 bucket 
+2. Upload media files
+3. Login in Production to verify the email adress.
+
