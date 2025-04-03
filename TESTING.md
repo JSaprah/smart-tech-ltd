@@ -88,9 +88,82 @@ env.py files containing sensitive secret keys.
 
 ### Wave 
 
+#### Contrast issues
+
+* Two were caused by Mailchimp asterisks. I have changed the color to text-light to resolve these two issues.
+* Facebook text. This is a readonly span so I could have ignored it. To get around with the error I have change the text color to light.
+* On the product page This come from the total amount of products shown. This includes class muted. I have chosen to keep it like this.
+* For the wishlist heart icon and the text next to it. I had these classes as muted. I changed these to light to ensure this issue is gone.
+
+
+#### Labelling issues
+
+* First one was for the search on mobile. I have included a label for this
+* Label for mailchimp missing. I have left this piece of code as it is as this is directly retrieved from mailchimp.
+* For the product details page there was a missing label for the quantity input field. I have added this.
+
+
+![Wave issues resolved](docs\validation\wave\wave_issues_resolved.png)  
+
 
 ### Lighthouse
 
+Lighthouse was utilized to evaluate the website across four key aspects: performance, accessibility, best practices, and SEO. The primary focus of this project was on accessibility and SEO, both of which achieved notably high scores.
+
+Accessibility scored approximately 78% across all pages, with warnings arising due to the use of third-party elements such as Mailchimp and Stripe. After discussing this with my mentor, it was determined that these issues fall outside the scope of the project and can be left as they are. As this is common for all pages it will not be addressed anymore.
+
+The picture shows errors in devtools. No errors were found in devtools - validated by my mentor.
+
+![Lighthouse best practices](docs/lighthouse/Desktop/home_best_practices.png)  
+
+Home:
+For the desktop the three other aspects scored very high and there was no need to improve upon that at the moment.For the mobile version the performance score drops a bit.
+
+![Lighthouse score home desktop](docs/lighthouse/Desktop/home_score.png)  
+![Lighthouse score home mobile](docs/lighthouse/Mobile/home_score.png)  
+
+
+Products: 
+For the desktop version the score is again fine. For the mobile version score on performance is lower than expected. The reasons given for this are large content on the page. I have used next gen webp formatting already. Next step that I could do is to compress the images further.
+
+![Lighthouse score product desktop](docs/lighthouse/Desktop/product_score.png)  
+![Lighthouse score product mobile](docs/lighthouse\Mobile/product_score.png)  
+
+
+Product detail Page:
+For the desktop version performance, SEO and accesibility scored high. This performance was again lower on mobile version with the same reasons as mentioned in the products.
+
+![Lighthouse score product details desktop](docs/lighthouse/Desktop/product_details_score.png)  
+![Lighthouse score product details mobile](docs/lighthouse/Mobile/product_details_score.png)  
+
+
+Shopping bag:
+For the desktop version performance, SEO and accesibility scored high. This performance was again lower on mobile version with the same reasons as mentioned in the products.
+
+![Lighthouse score shopping bag desktop](docs/lighthouse/Desktop/shopping_bag_score.png)  
+![Lighthouse score shopping bag mobile](docs/lighthouse/Mobile/shopping_bag_score.png) 
+
+
+Checkout:
+
+For the desktop version performance, SEO and accesibility scored high. This was again lower on mobile version with the same reasons as mentioned in the products. Also an improvement here could put to change the fields color so it stands out. This was not causing any damage to the checkout functionality and the look was fine. I decided not make any changes to improve the score for now.
+
+![Lighthouse score checkout desktop](docs/lighthouse/Desktop/checkout_score.png)  
+![Lighthouse score checkout mobile](docs/lighthouse/Mobile/checkout_score.png) 
+
+
+Add product:
+For the desktop version performance, SEO and accesibility scored high. This performance was again lower on mobile version with the same reasons as mentioned in the products.
+
+![Lighthouse score add product desktop](docs/lighthouse/Desktop/add_product_score.png)  
+![Lighthouse score add product mobile](docs/lighthouse/Mobile/add_product_score.png) 
+
+
+Profile:
+For the desktop version SEO and accesibility scored high. Performance in both cases was lower to due large contents on the page..
+
+![Lighthouse score profile desktop](docs/lighthouse/Desktop/profile_score.png)  
+![Lighthouse score profile mobile](docs/lighthouse/Mobile/profile_score.png) 
 
 
  ## Manual testing
@@ -193,7 +266,7 @@ CRUD operations were thoroughly tested and performed as expected. Only superuser
 A comprehensive page featuring:
 
 * Product Overview: Includes details, pricing, and images.
-* Reviews Tab: Users can read, add, and delete reviews (authenticated users only). Tested on one user can leave one review per product. The creator of the review can delete the review. Logged in with a second account and this was working fine as the delete button was not visible for the other user.
+* Reviews Tab: Users can read, add, and delete reviews (authenticated users only). Tested on one user can leave one review per product. The creator of the review can delete the review. Logged in with a second account and this was working fine as the delete button was not visible for the other user. It has been validated that a user can give a rating from 1-5 only. Future enhancement I would change the max amound characters for the message as this become very long.
 * Wishlist Integration: Allows quick addition to the wishlist. The heart icon changes its color when added to the wishlist so that the user knows that it has been added. Checked in the database and the products are correctly being added.
 * Admin Controls: Enables superusers to edit or remove products directly. The fields are being prepopulated with data and upon deletion the product is deleted. It is not visible for the user. Neither in the database. Tested by login in with different accounts. Other users can indeed not delete or edit the products.
 * All sections were tested for usability and responsiveness.
