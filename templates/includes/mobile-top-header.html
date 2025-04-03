@@ -8,6 +8,7 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
+      aria-label="Search"
     >
       <div class="text-center">
         <div><i class="fas fa-search"></i></div>
@@ -29,6 +30,7 @@
             <button
               class="form-control btn btn-warning rounded-0"
               type="submit"
+              aria-label="Submit search"
             >
               <span class="icon">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -40,10 +42,13 @@
     </div>
   </li>
 
-  
-  <!--Wishlist-->
+  <!-- Wishlist -->
   <li class="list-inline-item">
-    <a class="nav-link d-block d-lg-none" href="{% url 'wishlist' %}">
+    <a
+      class="nav-link d-block d-lg-none"
+      href="{% url 'wishlist' %}"
+      aria-label="Wishlist"
+    >
       <div class="text-center">
         <div><i class="fas fa-heart"></i></div>
       </div>
@@ -59,6 +64,7 @@
       data-toggle="dropdown"
       aria-haspopup="true"
       aria-expanded="false"
+      aria-label="My Account"
     >
       <div class="text-center">
         <div><i class="fas fa-user"></i></div>
@@ -70,20 +76,24 @@
     >
       {% if request.user.is_authenticated %}
         {% if request.user.is_superuser %}
-          <a href="{% url 'add_product' %}" class="dropdown-item">Product Management</a>
+          <a href="{% url 'add_product' %}" class="dropdown-item" aria-label="Product Management">Product Management</a>
         {% endif %}
-        <a href="{% url 'profile' %}" class="dropdown-item">My Profile</a>
-        <a href="{% url 'account_logout' %}" class="dropdown-item">Logout</a>
+        <a href="{% url 'profile' %}" class="dropdown-item" aria-label="My Profile">My Profile</a>
+        <a href="{% url 'account_logout' %}" class="dropdown-item" aria-label="Logout">Logout</a>
       {% else %}
-        <a href="{% url 'account_signup' %}" class="dropdown-item">Register</a>
-        <a href="{% url 'account_login' %}" class="dropdown-item">Login</a>
+        <a href="{% url 'account_signup' %}" class="dropdown-item" aria-label="Register">Register</a>
+        <a href="{% url 'account_login' %}" class="dropdown-item" aria-label="Login">Login</a>
       {% endif %}
     </div>
   </li>
 
   <!-- Shopping Bag -->
   <li class="list-inline-item">
-    <a class="nav-link d-block d-lg-none" href="{% url 'view_bag' %}">
+    <a
+      class="nav-link d-block d-lg-none"
+      href="{% url 'view_bag' %}"
+      aria-label="Shopping Bag"
+    >
       <div class="text-center">
         <div><i class="fas fa-shopping-bag"></i></div>
       </div>

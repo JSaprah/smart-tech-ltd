@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',  # Not in the latest template, but from course content
+    'django.contrib.sites',
     'allauth',
     'allauth.account',
     # Optional -- requires install using `django-allauth[socialaccount]`.

@@ -49,7 +49,8 @@ def remove_from_wishlist(request, product_id):
     wishlist = Wishlist.objects.get(user=request.user)
 
     # Attempt to delete the item
-    deleted_count, _ = WishlistItem.objects.filter(wishlist=wishlist, product_id=product_id).delete()
+    deleted_count, _ = WishlistItem.objects.filter(
+        wishlist=wishlist, product_id=product_id).delete()
 
     if deleted_count > 0:
         messages.info(request, "Removed from your wishlist.")

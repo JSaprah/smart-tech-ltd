@@ -73,7 +73,8 @@ def product_detail(request, product_id):
     reviews = product.product_review.all()
 
     if request.user.is_authenticated:
-        in_wishlist = WishlistItem.objects.filter(wishlist__user=request.user, product=product).exists()
+        in_wishlist = WishlistItem.objects.filter(
+            wishlist__user=request.user, product=product).exists()
         form = ReviewForm()
 
     else:
@@ -109,7 +110,7 @@ def add_product(request):
                 'valid.')
     else:
         form = ProductForm()
-   
+
     template = 'products/add_product.html'
     context = {
         'form': form,

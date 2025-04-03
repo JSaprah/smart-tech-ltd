@@ -1,3 +1,5 @@
+# Testing
+
 ## Bugs and Fixes During the Development Process
 
 The bugs identified during the project
@@ -34,7 +36,6 @@ The bugs identified during the project
  
  This made sure that I had a backup before making changes as the the db.backup.sqlite3 file contains the previous data, with the broken wishlist data, your new dbs.qlite3 file contains all of your old data except for the wishlist data.
 
-
  11. Heroku deployment failed with the reason that there is no static root in the settings. By adding the static root in the settings the deployment went succesfull with all static and media files loaded.
 
  12. Deployment to Production via Heroku. I followed all deployment steps carefully and my site was configured correctly. With One issue that the bag was not loading in Production - I got a server error 500. Unfortunatelly, I was not able to see what exactly was going wrong, there I was advice to put the Debug to True and make a deployment to identify and solve the issues. After putting the debuug to True, it apeared that a the quantity_input_script.html template was not working correctly. The issue was that I used backslashes in the url instead of /. Changing this and deploying it back to production solved the issue. 
@@ -47,9 +48,238 @@ The bugs identified during the project
 
  16. The searchbars were working fine on the smaller and larger screen, untill I opened the search on the smaller screen and made it larger; I had two searchbars! This was because I made the display for the larger searchbar hidden, but vice and versa I did not add the d-lg-none of the smaller search bar. I could solve it by adding the display to false.
 
- ## Testing
 
- ### Manual testing
+ ## Testing using validators
+
+### HTML
+
+The validation was performed using the W3C Validator for HTML
+
+* An error was identified due to a non-unique ID. This was addressed by updating one of the IDs to ensure uniqueness.
+* Informative messages regarding trailing slashes on void elements were noted. These were left unchanged as they align with the existing template, and the Prettier extension would restore them if modified.
+
+![HTML validation](docs/validation/html/w3c_home_errors.png)
+
+
+### CSS
+
+The validation was performed using the W3C Validator for HTML
+
+All CSS files were thoroughly reviewed through direct input, and no errors were detected.
+
+![CSS validation](docs\validation\css\w3c_css_validation.PNG)  
+
+
+### JSHint
+
+One file was analyzed using JSHint, and the review flagged two issues:
+
+* Missing Semicolon: This was identified and corrected, ensuring adherence to JavaScript syntax.
+
+* Undefined Variable: JSHint flagged the Stripe variable as undefined, but this is a false positive. The Stripe variable is part of the initialization of the Stripe Elements widget, which is provided by a third-party API. Since it is essential for integrating Stripe functionality, the variable name remains unchanged.
+
+![Stripe elements validation](docs/validation/js/stripe_elements_validation.png)  
+
+
+### PEP8
+
+Throughout my Python project, I used pep8 to identify and resolve errors like missing newlines, extra spaces, and exceeding character limits. While most issues were fixed, I left eight validations untouched as they pertained to the settings and 
+env.py files containing sensitive secret keys.
+
+### Wave 
+
+
+### Lighthouse
 
 
 
+ ## Manual testing
+
+The purpose of this manual testing is to verify that all user stories for the specified milestones are functioning as expected. I clicked through each of the following pages— Home, Products, Product Details, Contact, Wishlist, Profile, and Product Admin, checkout - to ensure everything is working seamlessly.
+
+
+### User stories check
+
+#### Milestone 1: Viewing and Navigating
+
+The site clearly conveys its purpose and offers intuitive navigation. Visitors can easily explore a paginated list of products, ordered by default or through various sorting options such as name, price, or category. Adding items to the cart works fine, with safeguards in place to prevent adding more than 99 or less than 0 items. For the future it would be nice to add a stock management system. It show the numbers of products in stock (this was out of scope).
+
+
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Shopper|Browse a selection of products|I can make a purchase|Pass|
+|2.|Shopper|See the details of each product|I can chose the right one to buy|Pass|
+|3.|Shopper|I want to see the total price in my basket at all times|I can monitor my spending|Pass|
+|4.|Shopper|Save items to a wishlist|I can revisit and purchase them later|Pass|
+|5.|Shopper|Contact the store effortlessly|I can ask questions or seek assistance when needed|Pass|
+
+
+#### Milestone 2: Registering and accessing account
+
+
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Site User|Effortlessly sign up for an account|I can have a personal profile|Pass|
+|2.|Site User|Conveniently log in or log out|I can access personal account information|Pass|
+|3.|Site User|Login and logout option|Access my personal account details and securely logout|Pass|
+|4.|Site User|Recover my password if I forget|I can regain access to the account|Pass|
+|5.|Site User|Have a personalised user profile|I can view my order history, order cofirmations and save payment information|Pass|
+
+
+#### Milestone 3: Filtering and sorting
+
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Shopper|Easily see search results and the number of results|I can quickly decide if the desired product is available|Pass|
+|2.|Shopper|Search for products by name or description|I can find specific items to buy|Pass|
+|3.|Shopper|Sort the list of available products|I can identify the best rates, prices, and categories|Pass|
+
+
+#### Milestone 4: Purchasing and checkout
+
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Shopper|Easily select the quantity of a product when purchasing|I can buy the required amount of the product|Pass|
+|2.|Shopper|view items in the shopping bag|identify the total cost and all items to be received|Pass|
+|3.|Shopper|Modify the quantity of items in my shopping bag|I can effortlessly make adjustments before purchasing.|Pass|
+|4.|Shopper|Receive an email summary of my order after checking out|I can maintain a record for future reference|Pass|
+|5.|Shopper|Review my order history|I can track previous purchases at a glance|Pass|
+|6.|Shopper|Submit my payment details securely|I get the guarantee the safety of my financial data|Pass|
+
+
+#### Milestone 5: Adminstering and Managing products
+
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Store Owner|Add new products to the store effortlessly|I can ensure the catalog stays fresh and relevant|Pass|
+|2.|Store Owner|Modify existing product details|the information stays up-to-date|Pass|
+|3.|Store Owner|Delete outdated or unavailable product|I can keep the store inventory organized and accurate|Pass|
+
+
+#### Milestone 6: Product reviews
+|User Story ID| As an| I want to be able to| So that|Result|
+|-------------|------|---------------------|--------|------|
+|1.|Shopper|Leave a review|I can share my experience for a product|Pass|
+|2.|Shopper|Read reviews from other customers|I can understand the quality and value of a product|Pass|
+|3.|Shopper|remove my previously submitted reviews|I can take down feedback that I no longer wish to display|Pass|
+
+
+### Walkthrough
+
+I successfully accessed the live site on multiple devices, including desktop and mobile. Everything displayed as expected, with all images and styles properly rendered, ensuring a consistent and polished experience across platforms.
+
+
+#### Products Page
+
+The Products Page enables seamless browsing. Features like:
+
+* Search Results Display: Accurately shows the total number of matching items. A label is visible on the products page showcasing how many items are displayed.
+* Search Bar: Locates products using keywords or descriptions. Testing has been done by entering different keywords from the name, desription and none existing ones. The results were comming out fine.
+* Sorting Options: Efficiently filters results by name, category, and price. All sortings work.
+
+
+#### Product Management for Admins
+
+Admins can:
+
+* Add Products via a simple form for product details (name, description, price, category, and image upload).
+* Edit Products through a pre-populated form to ensure quick modifications.
+* Delete Products via a button. To improve the user experience I would add a confirmation modal for the deletion in the future
+
+CRUD operations were thoroughly tested and performed as expected. Only superusers can access these features and the buttons are only visible to them.
+
+#### Product Details Page
+
+A comprehensive page featuring:
+
+* Product Overview: Includes details, pricing, and images.
+* Reviews Tab: Users can read, add, and delete reviews (authenticated users only). Tested on one user can leave one review per product. The creator of the review can delete the review. Logged in with a second account and this was working fine as the delete button was not visible for the other user.
+* Wishlist Integration: Allows quick addition to the wishlist. The heart icon changes its color when added to the wishlist so that the user knows that it has been added. Checked in the database and the products are correctly being added.
+* Admin Controls: Enables superusers to edit or remove products directly. The fields are being prepopulated with data and upon deletion the product is deleted. It is not visible for the user. Neither in the database. Tested by login in with different accounts. Other users can indeed not delete or edit the products.
+* All sections were tested for usability and responsiveness.
+
+
+#### Shopping Bag Page
+
+Key features include:
+
+* Overview: Displays product details, quantity, shipping cost and subtotal automatically calculated.
+* Quantity Adjustment: Works via "+" and "-" buttons with an update function. I have tested to submit a number under the 0 or above 99. The validation is done that this is not possible. The update button updates the subtotals in the bag.
+* Item Removal: Deletes products from the bag. Future development could be to add a modal for confirmation.
+* Call-to-Actions: Supports continued shopping or checkout.
+* Empty bag notifications were verified.
+
+
+#### Checkout page
+
+* Error Validation: All fields are validated to prevent incomplete or incorrect information during checkout.
+* Tests verified the page's functionality, including secure payment submissions and accurate order summaries.
+* Payment verfied on Stripe's dashboard.
+
+#### Order Confirmation Page
+
+* Displays confirmation message, order number, and details of the purchase summary.
+* Sends email confirmation for reference.
+
+Tested to ensure information displays correctly and aligns with purchase activity.
+
+
+### Wishlist Page
+
+* Allows adding products directly from the Product Details Page via the heart icon. Products are being added to the list.
+* Enables management of saved items such as going back to the details page to make the purchase or delete the product from the wishlist.
+* Personalization confirmed across sessions for logged-in users. A user can only see its own wishlist.
+
+### Contact page
+
+Features a straightforward form:
+
+* Fields for Name, Email, Subject, and Message tested for proper validation and submission functionality. All tests confirmed smooth operation.
+
+### Marketing
+
+* Promotional Emails: A Mailchimp form is seamlessly integrated across all pages, capturing email addresses for storage in the Mailchimp database. This ensures a streamlined approach to launching campaigns for new products and offers.
+* Social Media Presence: A dedicated Facebook page, linked perfectly in the footer with proper rel attributes, acts as a global window to promote business. The show now button was not available at moment of creation of the page, therefore I have added send a message as the call to action button.
+* Search Engine Optimization (SEO): Strategic SEO practices are in place with meta descriptions, titles, and keywords for each page, complemented by a sitemap and robots.txt file, to boost visibility and attract more visitors.
+
+
+From MoSCow perspective all Must and Should have features have been implemented. Due to time constraints the others were not picked up.
+
+Must have:
+* Full CRUD (Create, Read, Update, Delete) functionality.
+* User login/register system.
+* Seamless checkout system.
+* User account profile management.
+* Mailing list subscription.
+* Product sorting and searching capabilities.
+* Integration with Stripe for payments.
+* SEO-friendly language throughout the site.
+* Guest checkout option.
+* User role permissions.
+* Order history for users.
+* Social media page integration.
+* Login in, registering and password recovery.
+* Email confirmation for orders.
+* User feedback for actions taken (toasts).
+* Saved customer details during checkout.
+
+Should have:
+* Product Reviews: Shoppers can rate and leave opinions.
+* Stock management interface for product management.
+* Contact Form: Facilitates user queries.
+* Wishlist Feature: Allow users to save favorite items for future consideration.
+
+Could-Have Feature
+* Tech Insights Blog: Content that educates and excites.
+* Product Demos: Videos showcasing key features.
+* Related Recommendations: Suggest complementary items.
+* Order Modifications: Editable orders until processing begins.
+* Terms & Conditions: Clear policies for transparency.
+* Delivery Information: Accessible details about shipping options.
+* Coupon code for extra discount
+* Special Offers
+
+Won't have
+* Currency Options: Support for multiple currencies.
+* Third-Party Reviews: Trustpilot integration.
+* Advanced Analytics: Sales report generation.

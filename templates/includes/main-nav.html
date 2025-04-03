@@ -1,32 +1,70 @@
 <div class="collapse navbar-collapse" id="main-nav">
-  <ul class="navbar-nav w-auto mx-auto">
-      <li class="nav-item">
-          <a class="font-weight-bold nav-link text-light mr-5" href="{% url 'products' %}" id="all-products-link">
-              All Products
-          </a>
-      </li>
-
-      <li class="nav-item">
-          <a class="font-weight-bold nav-link text-light mr-5" href="{% url 'products' %}?category=games" id="gaming-link">
-              Gaming
-          </a>
-      </li>
-
-      <li class="nav-item dropdown">
-          <a class="dropdown-toggle font-weight-bold nav-link text-light mr-5" href="#" id="accessoiries-link" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Accessoiries
-          </a>
-          <div class="dropdown-menu border-0 bg-light" aria-labelledby="accessoiries-link">
-              <a href="{% url 'products' %}?category=charging" class="dropdown-item">Charging</a>
-              <a href="{% url 'products' %}?category=headsets" class="dropdown-item">Headsets</a>
-          </div>
-      </li>
-
-      <li class="nav-item">
-        <a class="font-weight-bold nav-link text-light mr-5" href="{% url 'contact' %}" id="contact-link">
-            Contact
-        </a>
-    </li>
-
-  </ul>
-</div>
+    <ul class="navbar-nav w-auto mx-auto">
+        <li class="nav-item">
+            <a
+                class="font-weight-bold nav-link text-light mr-5"
+                href="{% url 'products' %}"
+                id="all-products-link"
+                aria-label="View all products"
+            >
+                All Products
+            </a>
+        </li>
+  
+        <li class="nav-item">
+            <a
+                class="font-weight-bold nav-link text-light mr-5"
+                href="{% url 'products' %}?category=games"
+                id="gaming-link"
+                aria-label="View products in the Gaming category"
+            >
+                Gaming
+            </a>
+        </li>
+  
+        <li class="nav-item dropdown">
+            <a
+                class="dropdown-toggle font-weight-bold nav-link text-light mr-5"
+                href="#"
+                id="accessoiries-link"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+                aria-label="View products in the Accessories category"
+            >
+                Accessories
+            </a>
+            <div
+                class="dropdown-menu border-0 bg-light"
+                aria-labelledby="accessoiries-link"
+            >
+                <a
+                    href="{% url 'products' %}?category=charging"
+                    class="dropdown-item"
+                    aria-label="View Charging products"
+                >
+                    Charging
+                </a>
+                <a
+                    href="{% url 'products' %}?category=headsets"
+                    class="dropdown-item"
+                    aria-label="View Headsets products"
+                >
+                    Headsets
+                </a>
+            </div>
+        </li>
+  
+        <li class="nav-item">
+            <a
+                class="font-weight-bold nav-link text-light mr-5"
+                href="{% url 'contact' %}"
+                id="contact-link"
+                aria-label="Contact the store"
+            >
+                Contact
+            </a>
+        </li>
+    </ul>
+  </div>
+  
