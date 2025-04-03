@@ -18,27 +18,31 @@
       class="dropdown-menu dropdown-menu-right border-0 w-100 p-3 rounded-0 my-0"
       aria-labelledby="mobile-search"
     >
-      <form method="GET" action="{% url 'products' %}" class="w-100">
-        <div class="input-group d-lg-none">
+    <form method="GET" action="{% url 'products' %}" class="w-100">
+      <div class="input-group d-lg-none">
+          <label for="search-products" class="sr-only">Search for products</label>
           <input
-            class="form-control rounded-0"
-            type="text"
-            name="q"
-            placeholder="Search for products"
+              class="form-control rounded-0"
+              type="text"
+              name="q"
+              id="search-products"
+              placeholder="Search for products"
+              aria-label="Search for products"
           />
           <div class="input-group-append">
-            <button
-              class="form-control btn btn-warning rounded-0"
-              type="submit"
-              aria-label="Submit search"
-            >
-              <span class="icon">
-                <i class="fa-solid fa-magnifying-glass"></i>
-              </span>
-            </button>
+              <button
+                  class="form-control btn btn-warning rounded-0"
+                  type="submit"
+                  aria-label="Submit search"
+              >
+                  <span class="icon">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
+              </button>
           </div>
-        </div>
-      </form>
+      </div>
+  </form>
+  
     </div>
   </li>
 
