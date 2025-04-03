@@ -356,3 +356,7 @@ Won't have
 * Currency Options: Support for multiple currencies.
 * Third-Party Reviews: Trustpilot integration.
 * Advanced Analytics: Sales report generation.
+
+### Environment setup
+
+I have created a seperate document for the environment setup ![Environment Setup](ENVIRONMENTSETUP.md)
