@@ -4,15 +4,18 @@ from django.contrib import messages
 from products.models import Product
 
 
-# Create your views here.
 def view_bag(request):
-    """ A view to render the bag contents """
+    """
+    A view to render the bag contents
+    """
 
     return render(request, 'bag/bag.html')
 
 
 def add_product_to_bag(request, product_id):
-    """ A view to add products to the bag with the selected quantity """
+    """
+    A view to add products to the bag with the selected quantity
+    """
 
     product = Product.objects.get(pk=product_id)
     quantity = int(request.POST.get('quantity'))
@@ -33,7 +36,9 @@ def add_product_to_bag(request, product_id):
 
 
 def update_bag(request, product_id):
-    """ A view to update the bag """
+    """
+    A view to update the bag
+    """
 
     item = get_object_or_404(Product, pk=product_id)
 
@@ -53,7 +58,9 @@ def update_bag(request, product_id):
 
 
 def remove_from_bag(request, product_id):
-    """ View to remove item from bag"""
+    """
+    View to remove item from bag
+    """
 
     try:
         item = get_object_or_404(Product, pk=product_id)

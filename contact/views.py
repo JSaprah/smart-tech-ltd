@@ -2,7 +2,11 @@ from django.shortcuts import render, redirect
 from .forms import ContactForm
 from django.contrib import messages
 
+
 def contact(request):
+    """
+    View to handle contact submissions
+    """
     if request.method == 'POST':
         form = ContactForm(request.POST)
         if form.is_valid():

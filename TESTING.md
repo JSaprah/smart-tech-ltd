@@ -63,11 +63,11 @@ The validation was performed using the W3C Validator for HTML
 
 ### CSS
 
-The validation was performed using the W3C Validator for HTML
+The validation was performed using the W3C Validator for CSS
 
 All CSS files were thoroughly reviewed through direct input, and no errors were detected.
 
-![CSS validation](docs\validation\css\w3c_css_validation.PNG)  
+![CSS validation](docs/validation/css/w3c_css_validation.PNG)  
 
 
 ### JSHint
@@ -103,7 +103,7 @@ env.py files containing sensitive secret keys.
 * For the product details page there was a missing label for the quantity input field. I have added this.
 
 
-![Wave issues resolved](docs\validation\wave\wave_issues_resolved.png)  
+![Wave issues resolved](docs/validation/wave/wave_issues_resolved.png)  
 
 
 ### Lighthouse
@@ -127,7 +127,7 @@ Products:
 For the desktop version the score is again fine. For the mobile version score on performance is lower than expected. The reasons given for this are large content on the page. I have used next gen webp formatting already. Next step that I could do is to compress the images further.
 
 ![Lighthouse score product desktop](docs/lighthouse/Desktop/product_score.png)  
-![Lighthouse score product mobile](docs/lighthouse\Mobile/product_score.png)  
+![Lighthouse score product mobile](docs/lighthouse/Mobile/product_score.png)  
 
 
 Product detail Page:
@@ -359,4 +359,4 @@ Won't have
 
 ### Environment setup
 
-I have created a seperate document for the environment setup ![Environment Setup](ENVIRONMENTSETUP.md)
+I have created a seperate document for the environment setup [Environment Setup](ENVIRONMENTSETUP.md)

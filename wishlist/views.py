@@ -8,7 +8,9 @@ from django.contrib import messages
 # Create your views here.
 @login_required
 def wishlist(request):
-    """ A view to display the wishlist """
+    """
+    A view to display the wishlist
+    """
     try:
         wishlist = Wishlist.objects.get(user=request.user)
         wishlist_items = WishlistItem.objects.filter(wishlist=wishlist)
@@ -23,7 +25,9 @@ def wishlist(request):
 
 @login_required
 def add_to_wishlist(request, product_id):
-    """ A view to add products to the wishlist """
+    """
+    A view to add products to the wishlist
+    """
     product = get_object_or_404(Product, id=product_id)
 
     wishlist, created = Wishlist.objects.get_or_create(user=request.user)
@@ -43,12 +47,12 @@ def add_to_wishlist(request, product_id):
 
 @login_required
 def remove_from_wishlist(request, product_id):
-    """ A view to remove products from the wishlist """
+    """
+    A view to remove products from the wishlist
+    """
 
-    # Get the user's wishlist
     wishlist = Wishlist.objects.get(user=request.user)
 
-    # Attempt to delete the item
     deleted_count, _ = WishlistItem.objects.filter(
         wishlist=wishlist, product_id=product_id).delete()
 
