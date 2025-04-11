@@ -319,28 +319,27 @@ Features a straightforward form:
 From MoSCow perspective all Must and Should have features have been implemented. Due to time constraints the others were not picked up.
 
 Must have:
-* Full CRUD (Create, Read, Update, Delete) functionality.
-* User login/register system.
-* Seamless checkout system.
-* User account profile management.
-* Mailing list subscription.
-* Product sorting and searching capabilities.
-* Integration with Stripe for payments.
-* SEO-friendly language throughout the site.
-* Guest checkout option.
-* User role permissions.
-* Order history for users.
-* Social media page integration.
-* Login in, registering and password recovery.
-* Email confirmation for orders.
-* User feedback for actions taken (toasts).
-* Saved customer details during checkout.
+* Full CRUD (Create, Read, Update, Delete) functionality. As an Admin it is possible to add new products, edit, read and delete new products. As a normal user it is possible to add, read and delete reviews. It is also possible to contact using the contact form.
+* User login/register system. Django's build in authentication is used to enable this feature. It is possible to register, login, recreate the password if forgotten.
+* Seamless checkout system. It is possible to checout securely using Stripe.
+* User account profile management. Each user gets a profile assigned upon registering.
+* Mailing list subscription. It is possible to subscribe for the newsletter using Mailchimp.
+* Product sorting and searching capabilities. It is possible to sort the products on category, name and price. There is a search option for the products as well.
+* Integration with Stripe for payments. The payments are getting through in Stripe. The dashboard on Stripe is showing all payments being initiated and being succesful.
+* SEO-friendly language throughout the site. The SEO score is high throughout the website.
+* Guest checkout option. It is possible to checkout as a guest. Tested it as a logged in user as well as logged out user.
+* Order history for users. Users can login and view order history. Check has been done.
+* Social media page integration. Facebook page has been created.
+* Login in, registering and password recovery. It is possible to do a password recovery.
+* Email confirmation for orders. An email is being received on placing order.
+* User feedback for actions taken (toasts). Toasts messages are added throughout the website.
+* Saved customer details during checkout. The tickbox has been reviewed. This is saving the information.
 
 Should have:
-* Product Reviews: Shoppers can rate and leave opinions.
-* Stock management interface for product management.
-* Contact Form: Facilitates user queries.
-* Wishlist Feature: Allow users to save favorite items for future consideration.
+* Product Reviews: Shoppers can rate and leave opinions. On each product detail page there is a section to leave reviews and read reviews of other users.
+* Stock management interface for product management. It is possible as an admin to add new products, edit and delete.
+* Contact Form: Facilitates user queries. A contact form is in place for all users to contact Smart Tech.
+* Wishlist Feature: Allow users to save favorite items for future consideration. A wishlist is in place. Users can add products by clicking on the heart icon available on all product details pages.
 
 Could-Have Feature
 * Tech Insights Blog: Content that educates and excites.
